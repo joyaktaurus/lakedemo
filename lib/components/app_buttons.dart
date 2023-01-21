@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+
+import '../my_theme.dart';
+
+class MAButton extends StatelessWidget {
+  final String text;
+  final VoidCallback? buttonPress;
+  final bool isEnabled;
+  final double height;
+  final double width;
+  final EdgeInsets padding;
+  final double clipBehavior;
+  final double radius;
+
+  const MAButton({
+    Key? key,
+    required this.text,
+    this.buttonPress,
+    this.isEnabled = true,
+    required this.height,
+    this.padding = const EdgeInsets.all(16),
+    required this.width,
+    required this.clipBehavior,
+    required this.radius,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: padding, //const EdgeInsets.symmetric(horizontal: 20),
+      child: GestureDetector(
+        onTap: buttonPress,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(radius),
+          child: Container(
+            width: width,
+            height: height,
+            decoration: BoxDecoration(
+              color: !isEnabled
+                  ? MyTheme.primaryColor1.withOpacity(0.2)
+                  : MyTheme.primaryColor1,
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+            ),
+            child: Center(
+              child: Text(
+                text,
+                style:
+                    MyTheme.regularTextStyle(color: Colors.white, textSize: 18),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
