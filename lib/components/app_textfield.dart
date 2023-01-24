@@ -16,7 +16,7 @@ class MATextFormField extends StatelessWidget {
   final List<TextInputFormatter>? textInputFormatter;
   final BorderSide borderside;
   final bool readOnly;
-final ImageProvider<Object> image;
+  // final ImageProvider<Object> image;
   const MATextFormField({
     Key? key,
     required this.textEditingController,
@@ -31,7 +31,8 @@ final ImageProvider<Object> image;
     this.textInputFormatter = const [],
     this.borderside = const BorderSide(), //BorderSide.none,
     this.onchanged,
-    this.readOnly = false, required this.image,
+    this.readOnly = false,
+    //required this.image,
   }) : super(key: key);
 
   @override

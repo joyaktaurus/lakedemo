@@ -101,10 +101,13 @@ class LoginView extends GetView<LoginController> {
                         Row(
                           children: [
 
-                               CheckBoxWidget(onChanged: (value) {
-                                controller.isChecked = !controller.isChecked;
-                              },
-                              ),
+                             CheckBoxWidget(onChanged: (value) {
+                                   // userdata.write('islogged', true);
+                                   // userdata.write('username',username);
+                                   controller.isChecked = !controller.isChecked;
+                                },
+                                ),
+
 
                             Text("Remember me"),
                           ],

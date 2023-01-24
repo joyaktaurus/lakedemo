@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:lakeshore/components/screen_dash_views.dart';
 import 'package:lakeshore/screens/dashboard/dashboard_controller.dart';
 import '../../app.dart';
@@ -78,52 +79,67 @@ class DashBoardView extends GetView<DashboardController> {
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                           children: [
 
-                                               GestureDetector(
-                                                onTap: () {
-                                               //   controller.imageFromCamera();
-                                                },
-                                                child: Container(
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    children: [
-                                                      IconButton(
-                                                          onPressed: () {},
-                                                          icon: Icon(
-                                                            Icons.camera_alt,
-                                                            color: Colors.blue,
-                                                            size: 50,
-                                                          )),
-                                                      SizedBox(height: Get.height * 0.01),
-                                                      Text("Camera", style: TextStyle(fontSize: 18),)
-                                                    ],
-                                                  ),
-                                                ),
+                                               Column(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                               IconButton(
+                                                        onPressed: () {
+                                                          controller.takePhoto(ImageSource.camera);
+                                                          Get.back();
+                                                          // print(controller.pickedfile.value);
+                                                        //  controller.imageFromCamera();
+                                                          },
+                                                        icon: Icon(
+                                                          Icons.camera_alt,
+                                                          color: Colors.blue,
+                                                          size: 50,
+                                                        )),
+
+                                                  SizedBox(height: Get.height * 0.01),
+                                                  Text("Camera", style: TextStyle(fontSize: 18),)
+                                                ],
+                                                      ),
+
+                                            GestureDetector(
+                                              child: Column(
+                                                children: [
+                                                  IconButton(
+                                                      onPressed: () {
+                                                        controller.Photogallery(ImageSource.gallery);
+                                                        Get.back();
+                                                        // print(controller.pickedfile.value);
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.image,
+                                                        color: Colors.blue,
+                                                        size: 50,
+                                                      )),
+                                                  SizedBox(height: Get.height * 0.01),
+                                                  Text("Gallery", style: TextStyle(fontSize: 18),)
+                                                ],
                                               ),
-
-                                            Column(
-                                              children: [
-                                                IconButton(
-                                                    onPressed: () {
-
-                                                    },
-                                                    icon: Icon(
-                                                      Icons.image,
-                                                      color: Colors.blue,
-                                                      size: 50,
-                                                    )),
-                                                SizedBox(height: Get.height * 0.01),
-                                                Text("Gallery", style: TextStyle(fontSize: 18),)
-                                              ],
-                                            )
+                                              onTap: () {
+                                               // takePhoto(ImageSource.camera);
+                                              },
+                                            ),
                                           ],
                                         ),
                                       )
                                     ]);
                               });
                         },
-                        child: CircleAvatar(
-                          radius: 60,
-                          backgroundImage: AssetImage(AssetHelper.lakeSmall),
+                        child: Obx( () =>
+                            CircleAvatar(
+                              maxRadius: 60,
+                              child: ClipOval(
+                                child:
+
+                                Image.file(controller.pickedfile.value!,     width: 130,
+                                  height: 130,
+                                    fit: BoxFit.cover
+                                )  ,
+                              ),
+                            )
                         ),
                       ),
                       SizedBox(height: Get.height * 0.03),

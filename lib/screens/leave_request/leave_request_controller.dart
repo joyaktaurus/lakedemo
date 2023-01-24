@@ -4,8 +4,13 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/leave_request_model.dart';
+import 'contr.dart';
 
 class LeaveRequestController extends GetxController {
+
+  final TextEditingController reasonCtrl = TextEditingController(text: '');
+
+
   RxString dropdownText = 'Leave Type '.obs as RxString;
   List<String> df = [
     'Leave Type ',
@@ -13,7 +18,7 @@ class LeaveRequestController extends GetxController {
     'Sick Leave',
   ].obs;
   List<bool> Selected = <bool>[true, false].obs;
-  List<Widget> FullDayHalf = <Widget>[Text('Full Day'), Text('Half Day')].obs;
+  List<Widget> fullDayHalf = <Widget>[Text('Full Day'), Text('Half Day')].obs;
   RxString departmentType = 'Department Head'.obs as RxString;
   List<String> department = [
     'Department Head',
@@ -25,32 +30,32 @@ class LeaveRequestController extends GetxController {
   // var selectedDate = DateTime.now().obs;
   Rx<String> selectedDate = 'Start Date'.obs;
   Rx<String> selecteenddDate = 'End Date'.obs;
+  Rx<String> yourReason = ''.obs;
 
   //var selecteenddDate = DateTime.now().obs;
-  final startDate = DateTime.now().obs;
-  final endDate = DateTime.now().obs;
+  final startDate = DateTime
+      .now()
+      .obs;
+  final endDate = DateTime
+      .now()
+      .obs;
 
-  var lrequest = <LeaveRequest>[].obs;
+  var leaverequest = <LeaveRequest>[].obs;
+
 
 
   @override
   void onInit() {
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-
+    textController.addListener(() {
+      controllerText.value = textController.text;
+    });
+    //fetchRequest();
   }
 
   void fetchRequest() async {
-   // await Future.delayed(Duration(seconds: 1));
-    var requextResult = [
+    await Future.delayed(Duration(seconds: 1));
+    var requestResponse = [
       LeaveRequest(
         id: 1,
         leaveType: 'Casual Leave',
@@ -82,8 +87,20 @@ class LeaveRequestController extends GetxController {
         yourReason: 'cbhfghg4',
       ),
     ];
-    lrequest.value = requextResult;
+    leaverequest.value = requestResponse;
   }
+
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+
+  }
+
 
 
   choosestartDate() async {
@@ -144,4 +161,18 @@ class LeaveRequestController extends GetxController {
       return true;
     }
   }
+
+  final textController = TextEditingController();
+
+  RxString controllerText = ''.obs;
+
+  final controller = Get.put(Controller());
+
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   textController.addListener(() {
+  //     controllerText.value = textController.text;
+  //   });
+  // }
 }

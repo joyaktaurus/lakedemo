@@ -1,5 +1,5 @@
 class LeaveRequest {
-  late final int? id;
+   late final int? id;
   final String? leaveType;
   final String? startDate;
   final String? endDate;
@@ -8,7 +8,7 @@ class LeaveRequest {
   final String? yourReason;
 
   LeaveRequest({
-    required this.id,
+     required this.id,
     required this.leaveType,
     required this.startDate,
     required this.endDate,
@@ -17,7 +17,7 @@ class LeaveRequest {
     required this.yourReason,
   });
 }
-
+//List<LeaveRequest> lrequest = <LeaveRequest>[
 // final List<LeaveRequest> lrequest = [
 //   LeaveRequest(
 //     id: 1,
@@ -49,4 +49,4 @@ class LeaveRequest {
 //     deptHead: 'Ward',
 //     yourReason: 'cbhfghg4',
 //   ),
-// ];
+//];

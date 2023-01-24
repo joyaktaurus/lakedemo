@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lakeshore/components/request_container.dart';
+import 'package:lakeshore/models/leave_request_model.dart';
+import 'package:lakeshore/screens/my_leaves/myleaves_view.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../components/app_buttons.dart';
@@ -11,6 +13,7 @@ import '../../components/dash_container.dart';
 import '../../my_theme.dart';
 import '../../utils/asset_helper.dart';
 import '../../utils/my_utils.dart';
+import 'contr.dart';
 import 'leave_request_controller.dart';
 
 class LeaveRequestView extends GetView<LeaveRequestController> {
@@ -18,11 +21,13 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: () {
         MyUtils.hideKeyboard();
       },
       child: Scaffold(
+
         body: Stack(
           children: [
             BackGround(),
@@ -114,6 +119,7 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                       children: [
                         Obx(
                               () => dropDownBox(
+
                               FunctioOnchanged: (String? value) {
                                 // This is called when the user selects an item.
                                 controller.dropdownText.value = value!;
@@ -261,29 +267,26 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                         RequestContainer(
                           width: Get.width * 0.9,
                           height: Get.height * 0.13,
-                          child: GestureDetector(
-                            onTap: () {
+                          child: Container(
 
-                            },
-                            child: Container(
-                              width: Get.width * 0.9,
-                              height: Get.height * 0.13,
-                              child: TextField(
-                                maxLines: 100,
-                                decoration: new InputDecoration(
-                                  border: InputBorder.none,
-                                  filled: false,
-                                  contentPadding: new EdgeInsets.only(
-                                      left: 10.0,
-                                      top: 10.0,
-                                      bottom: 10.0,
-                                      right: 10.0),
-                                  hintText: 'Your reason',
-                                  hintStyle: new TextStyle(
-                                    color: Colors.grey.shade500,
-                                    fontSize: 12.0,
-                                    fontFamily: 'helvetica_neue_light',
-                                  ),
+                            width: Get.width * 0.9,
+                            height: Get.height * 0.13,
+                            child: TextFormField(
+                              controller: controller.textController,
+                              maxLines: 100,
+                              decoration: new InputDecoration(
+                                border: InputBorder.none,
+                                filled: false,
+                                contentPadding: new EdgeInsets.only(
+                                    left: 10.0,
+                                    top: 10.0,
+                                    bottom: 10.0,
+                                    right: 10.0),
+                                hintText: 'Your reason' ,
+                                hintStyle: new TextStyle(
+                                  color: Colors.grey.shade500,
+                                  fontSize: 12.0,
+                                  fontFamily: 'helvetica_neue_light',
                                 ),
                               ),
                             ),
@@ -306,7 +309,11 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                       child: MAButton(
                         text: 'Submit Request',
                         buttonPress: () {
-                          Get.back();
+                          Get.to(MyLeavesdView(),
+                          //     arguments: [
+                          //   controller.textController.value.toString(),
+                          // ]
+                          );
                         },
                         isEnabled: true,
                         padding: const EdgeInsets.only(bottom: 5),
