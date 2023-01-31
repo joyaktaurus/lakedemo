@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lakeshore/components/request_container.dart';
 import 'package:lakeshore/models/leave_request_model.dart';
 import 'package:lakeshore/screens/my_leaves/myleaves_view.dart';
@@ -13,12 +14,13 @@ import '../../components/dash_container.dart';
 import '../../my_theme.dart';
 import '../../utils/asset_helper.dart';
 import '../../utils/my_utils.dart';
-import 'contr.dart';
+import '../my_leaves/myleaves_controller.dart';
 import 'leave_request_controller.dart';
 
 class LeaveRequestView extends GetView<LeaveRequestController> {
-  const LeaveRequestView({Key? key}) : super(key: key);
-
+   LeaveRequestView({Key? key}) : super(key: key);
+  final  myLeavesController = Get.put<MyLeavesController>.obs;
+final LeaveRequestController leaveRequestController = Get.put(LeaveRequestController());
   @override
   Widget build(BuildContext context) {
 
@@ -272,7 +274,6 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                             width: Get.width * 0.9,
                             height: Get.height * 0.13,
                             child: TextFormField(
-                              controller: controller.textController,
                               maxLines: 100,
                               decoration: new InputDecoration(
                                 border: InputBorder.none,
@@ -282,7 +283,7 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                                     top: 10.0,
                                     bottom: 10.0,
                                     right: 10.0),
-                                hintText: 'Your reason' ,
+                                hintText: 'hfhf',
                                 hintStyle: new TextStyle(
                                   color: Colors.grey.shade500,
                                   fontSize: 12.0,
@@ -309,10 +310,17 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                       child: MAButton(
                         text: 'Submit Request',
                         buttonPress: () {
+
+                        //  myLeavesController.
                           Get.to(MyLeavesdView(),
-                          //     arguments: [
-                          //   controller.textController.value.toString(),
-                          // ]
+                               arguments: {
+                                 "LeaveType" : controller.dropdownText.value,
+                                 "StartDate" : controller.selectedDate.value,
+                                 "EndDate": controller.selecteenddDate.value
+                                     .toString(),
+                                // "Reason" : controller.reasonCtrl
+
+                               }
                           );
                         },
                         isEnabled: true,

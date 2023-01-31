@@ -7,9 +7,7 @@ import '../../models/leave_request_model.dart';
 import 'contr.dart';
 
 class LeaveRequestController extends GetxController {
-
-  final TextEditingController reasonCtrl = TextEditingController(text: '');
-
+  final  reasonCtrl = TextEditingController;
 
   RxString dropdownText = 'Leave Type '.obs as RxString;
   List<String> df = [
@@ -33,23 +31,14 @@ class LeaveRequestController extends GetxController {
   Rx<String> yourReason = ''.obs;
 
   //var selecteenddDate = DateTime.now().obs;
-  final startDate = DateTime
-      .now()
-      .obs;
-  final endDate = DateTime
-      .now()
-      .obs;
+  final startDate = DateTime.now().obs;
+  final endDate = DateTime.now().obs;
 
   var leaverequest = <LeaveRequest>[].obs;
-
-
 
   @override
   void onInit() {
     super.onInit();
-    textController.addListener(() {
-      controllerText.value = textController.text;
-    });
     //fetchRequest();
   }
 
@@ -59,8 +48,7 @@ class LeaveRequestController extends GetxController {
       LeaveRequest(
         id: 1,
         leaveType: 'Casual Leave',
-        startDate:
-        '11-02-2023',
+        startDate: '11-02-2023',
         endDate: '14-02-2023',
         leaveDay: 'Full day',
         deptHead: 'Ward',
@@ -69,8 +57,7 @@ class LeaveRequestController extends GetxController {
       LeaveRequest(
         id: 2,
         leaveType: 'Casual Leave',
-        startDate:
-        '21-02-2023',
+        startDate: '21-02-2023',
         endDate: '14-03-2023',
         leaveDay: 'Half day',
         deptHead: 'Icu care',
@@ -79,8 +66,7 @@ class LeaveRequestController extends GetxController {
       LeaveRequest(
         id: 3,
         leaveType: 'Sick Leave',
-        startDate:
-        '15-02-2023',
+        startDate: '15-02-2023',
         endDate: '24-02-2023',
         leaveDay: 'Full day',
         deptHead: 'Ward',
@@ -90,18 +76,13 @@ class LeaveRequestController extends GetxController {
     leaverequest.value = requestResponse;
   }
 
-
   @override
   void onReady() {
     super.onReady();
   }
 
   @override
-  void onClose() {
-
-  }
-
-
+  void onClose() {}
 
   choosestartDate() async {
     DateTime? pickedDate = await showDatePicker(
@@ -162,17 +143,11 @@ class LeaveRequestController extends GetxController {
     }
   }
 
-  final textController = TextEditingController();
+  Rx<String> textController = 'Reason'.obs as RxString;
 
   RxString controllerText = ''.obs;
 
   final controller = Get.put(Controller());
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   textController.addListener(() {
-  //     controllerText.value = textController.text;
-  //   });
-  // }
+
 }

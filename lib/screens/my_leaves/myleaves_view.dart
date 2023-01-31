@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lakeshore/models/leave_request_model.dart';
 import 'package:lakeshore/routes.dart';
+import 'package:lakeshore/screens/leave_request/leave_request_controller.dart';
 import '../../components/background.dart';
 import '../../components/dash_container.dart';
 import '../../components/request_container.dart';
@@ -16,10 +17,8 @@ class MyLeavesdView extends GetView<MyLeavesController> {
   const MyLeavesdView({Key? key,}) :
 
         super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<Controller>();
     return GestureDetector(
       onTap: () {
         MyUtils.hideKeyboard();
@@ -222,9 +221,9 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                         .spaceBetween,
                                                     children: [
 
-                                                   Text(controller.textController.value.toString(),
-                         //'${controller.leaverequest[index].leaveType}',
-                                                          //  "Going for a trip",
+                                                   Text(
+                                                    // Get.arguments[ "reason"],
+                                                            "Going for a trip",
                                                             style: TextStyle(
                                                                 fontSize: 15),
                                                           ),
@@ -270,9 +269,8 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                       ),
                                                     ],
                                                   ),
-
                                                   Text(
-                                                    "Casual Leave",
+                                                    Get.arguments["LeaveType"],
                                                     style: TextStyle(
                                                         color: Colors.grey),
                                                   ),
@@ -287,20 +285,18 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                       SizedBox(
                                                         width: Get.width * 0.03,
                                                       ),
-                                                      RichText(
-                                                          text: const TextSpan(
-                                                              children: [
-                                                                TextSpan(
-                                                                    text:
+                                                      Row(
+                                                          children: [
+                                                                Text(
                                                                     'Leave from : ',
                                                                     style: TextStyle(
                                                                       color:
                                                                       Colors.grey,
                                                                       fontSize: 14,
                                                                     )),
-                                                                TextSpan(
-                                                                    text:
-                                                                    'Dec 21, 2022 - ',
+                                                                Text(
+                                                                     Get.arguments[ "StartDate"],
+                                                                  //  'Dec 21, 2022 - ',
                                                                     style: const TextStyle(
                                                                         color: Colors
                                                                             .black,
@@ -308,9 +304,9 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                                         fontWeight:
                                                                         FontWeight
                                                                             .w500)),
-                                                                TextSpan(
-                                                                    text:
-                                                                    'Dec 21, 2022',
+                                                                Text(" - "),
+                                                                Text(
+                                                                    Get.arguments[ "EndDate"],
                                                                     style: const TextStyle(
                                                                         color: Colors
                                                                             .black,
@@ -318,7 +314,7 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                                         fontWeight:
                                                                         FontWeight
                                                                             .w500)),
-                                                              ])),
+                                                              ]),
                                                     ],
                                                   ),
                                                   SizedBox(
@@ -336,8 +332,8 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                           child:
                                                           SingleChildScrollView(
                                                             child: Text(
-                                                              " i am going for a trip to goa, i am going for a trip to goa",
-                                                              maxLines: 100,
+                                                              "cvgbcbcb",
+                                                              //Get.arguments[ "Reason"],                                                              maxLines: 100,
                                                               overflow:
                                                               TextOverflow
                                                                   .ellipsis,

@@ -52,7 +52,7 @@ class Routes {
     GetPage(
       binding: LeaveRequestViewBindings(),
       name: leaveRequestPage,
-      page: () => const LeaveRequestView(),
+      page: () =>  LeaveRequestView(),
     ),
     GetPage(
       binding: MyShiftViewBindings(),

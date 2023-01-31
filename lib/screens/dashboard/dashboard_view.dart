@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lakeshore/components/screen_dash_views.dart';
 import 'package:lakeshore/screens/dashboard/dashboard_controller.dart';
+import 'package:lakeshore/screens/leave_request/leave_request_view.dart';
 import '../../app.dart';
 import '../../components/background.dart';
 import '../../components/dash_container.dart';
@@ -128,19 +129,33 @@ class DashBoardView extends GetView<DashboardController> {
                                     ]);
                               });
                         },
-                        child: Obx( () =>
+                        child:
+                        Obx( () =>
                             CircleAvatar(
                               maxRadius: 60,
                               child: ClipOval(
                                 child:
-
-                                Image.file(controller.pickedfile.value!,     width: 130,
-                                  height: 130,
+                                Image.file(controller.pickedfile.value!,
+                                    width: 130,
+                                    height: 130,
                                     fit: BoxFit.cover
-                                )  ,
+                                ),
                               ),
                             )
                         ),
+                        // Obx( () =>
+                        //     CircleAvatar(
+                        //       maxRadius: 60,
+                        //       child: ClipOval(
+                        //         child:
+                        //         Image.file(controller.pickedfile.value!,
+                        //             width: 130,
+                        //           height: 130,
+                        //             fit: BoxFit.cover
+                        //         ),
+                        //       ),
+                        //     )
+                        // ),
                       ),
                       SizedBox(height: Get.height * 0.03),
                       Text(
@@ -190,7 +205,10 @@ class DashBoardView extends GetView<DashboardController> {
                       height: Get.height * 0.15,
                       text: "Leave Request",
                       onTap: () {
-                        Get.toNamed(Routes.leaveRequestPage);
+                        Get.to(LeaveRequestView(),
+                        arguments: {
+                          "Profile" : controller.pickedfile.value
+                        });
                       },
                       image: AssetHelper.leaveRequest,
                       // svg: 'assets/svg/🦆 icon _File Signature_.svg',
