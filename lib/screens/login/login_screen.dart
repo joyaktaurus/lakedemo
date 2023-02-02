@@ -100,15 +100,13 @@ class LoginView extends GetView<LoginController> {
                       children: [
                         Row(
                           children: [
-
-                             CheckBoxWidget(onChanged: (value) {
+                            CheckBoxWidget(onChanged: (value) {
+                                controller.rememberMe.value!.toString();
                                    // userdata.write('islogged', true);
                                    // userdata.write('username',username);
                                    controller.isChecked = !controller.isChecked;
                                 },
                                 ),
-
-
                             Text("Remember me"),
                           ],
                         ),
@@ -130,8 +128,8 @@ class LoginView extends GetView<LoginController> {
                           child: MAButton(
                             text: 'Login',
                             buttonPress: () {
-                              // MyUtils.hideKeyboard();
-                              // errM(() => controller.doLogin());
+                              MyUtils.hideKeyboard();
+                              errM(() => controller.doLogin());
                               // .............................
                               // final isValidate = controller
                               //     .formkey.currentState!
@@ -142,7 +140,7 @@ class LoginView extends GetView<LoginController> {
                               //  Get.toNamed(Routes.resetPassPage);
                               // }
                               //
-                                Get.offNamed(Routes.resetPassPage);
+                              //  Get.offNamed(Routes.resetPassPage);
                             },
                             isEnabled: true,
                             padding: const EdgeInsets.all(30),

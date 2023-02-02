@@ -37,8 +37,12 @@ class LoginController extends GetxController {
   RxBool isLoggingProgress = false.obs;
 
   final userdata = GetStorage().obs;
+ // ...................................
+  final _rememberMe = true.obs;
 
-
+  get rememberMe => this._rememberMe.value;
+  set rememberMe(value) => this._rememberMe.value = value;
+//...................................
   void doLogin() async {
     LocalStore.clearData();
     log("do login called");
@@ -64,6 +68,9 @@ class LoginController extends GetxController {
         isLoggingProgress.value = false;
         return;
       }
+     if(isChecked){
+       toggleRememberMe();
+      }
 
       User user = User.fromJson(resp.rdata);
       user.username = username;
@@ -87,7 +94,10 @@ class LoginController extends GetxController {
       }
     }
   }
+  void toggleRememberMe() {
+    _rememberMe.value = !_rememberMe.value;
 
+  }
  //  void checkIflogged() {
  // userdata.read('islogged') ? Get.offAll(Routes.dashBoardPage) : Get.offAll(Routes.login);
  //  }

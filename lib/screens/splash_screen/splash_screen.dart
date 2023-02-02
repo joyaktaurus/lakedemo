@@ -23,12 +23,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
-      SystemUiOverlay.bottom,
-    ]);
-    new Future.delayed(
+     new Future.delayed(
         const Duration(seconds: 3), () => Get.offNamed(Routes.login));
   }
+
   // void initState() {
   //   super.initState();
   //     new Future.delayed(

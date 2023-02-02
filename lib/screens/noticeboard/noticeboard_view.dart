@@ -102,21 +102,17 @@ class NoticeBoardView extends GetView<NoticeBoardController> {
                                   ),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.start,
                                     children: [
-                                      RichText(
-                                          text: const TextSpan(children: [
-                                        TextSpan(
-                                            text: 'Posted On : ',
+                                        Text(
+                                             'Posted On : ',
                                             style: TextStyle(
                                                 color: Colors.cyan,
                                                 fontSize: 14)),
-                                        TextSpan(
-                                            text: 'Dec 21, 2022',
+                                        Text(controller.getCurrentDate(),
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 13))
-                                      ])),
                                     ],
                                   ),
                                   SizedBox(

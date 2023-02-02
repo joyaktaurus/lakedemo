@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 import 'package:lakeshore/screens/dashboard/dashboard_binding.dart';
 import 'package:lakeshore/screens/dashboard/dashboard_view.dart';
+import 'package:lakeshore/screens/edit_details/edit_binding.dart';
+import 'package:lakeshore/screens/edit_details/edit_view.dart';
+import 'package:lakeshore/screens/edit_form/edit_form_binding.dart';
+import 'package:lakeshore/screens/edit_form/edit_form_view.dart';
 import 'package:lakeshore/screens/leave_request/leave_request_binding.dart';
 import 'package:lakeshore/screens/leave_request/leave_request_view.dart';
 import 'package:lakeshore/screens/login/login_binding.dart';
@@ -11,6 +15,8 @@ import 'package:lakeshore/screens/my_shift/myshift_bindings.dart';
 import 'package:lakeshore/screens/my_shift/myshift_view.dart';
 import 'package:lakeshore/screens/noticeboard/noticeboard_bindings.dart';
 import 'package:lakeshore/screens/noticeboard/noticeboard_view.dart';
+import 'package:lakeshore/screens/profile_image_show/profile_image_binding.dart';
+import 'package:lakeshore/screens/profile_image_show/profile_image_view.dart';
 import 'package:lakeshore/screens/reset_password/reset_binding.dart';
 import 'package:lakeshore/screens/reset_password/reset_password_view.dart';
 import 'package:lakeshore/screens/splash_screen/splash_screen.dart';
@@ -24,6 +30,9 @@ class Routes {
   static const leaveRequestPage = '/leaverequestpage';
   static const myShiftPage = '/myshiftpage';
   static const noticeBoardPage = '/noticeboardpage';
+  static const editViewPage = '/editviewpage';
+  static const editFormViewPage = '/editformviewpage';
+  static const profileImageViewPage = '/profileimageviewpage';
   static final routes = [
     GetPage(
       name: splash,
@@ -63,6 +72,21 @@ class Routes {
       binding: NoticeBoardViewBindings(),
       name: noticeBoardPage,
       page: () => const NoticeBoardView(),
+    ),
+    GetPage(
+      binding: EditViewBindings(),
+      name: editViewPage,
+      page: () => const EditView(),
+    ),
+    GetPage(
+      binding: EditFormViewBindings(),
+      name: editFormViewPage,
+      page: () => const EditFormView(),
+    ),
+    GetPage(
+      binding: ProfileImageViewBindings(),
+      name: profileImageViewPage,
+      page: () => const ProfileImageView(),
     ),
   ];
 }

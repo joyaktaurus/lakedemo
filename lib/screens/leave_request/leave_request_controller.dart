@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/leave_request_model.dart';
-import 'contr.dart';
+
 
 class LeaveRequestController extends GetxController {
   final  reasonCtrl = TextEditingController;
@@ -147,7 +147,7 @@ class LeaveRequestController extends GetxController {
 
   RxString controllerText = ''.obs;
 
-  final controller = Get.put(Controller());
+
 
 
 }

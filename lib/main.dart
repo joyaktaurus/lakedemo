@@ -18,9 +18,11 @@ void main() async {
 
   runApp(
     GetMaterialApp(
+
       debugShowCheckedModeBanner: false,
       title: App.appTitle,
       theme: ThemeData(
+        useMaterial3: true,
         primarySwatch: MyTheme.primaryColor1,
         unselectedWidgetColor: Colors.blue,
       ),

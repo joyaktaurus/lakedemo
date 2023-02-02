@@ -16,7 +16,7 @@ abstract class LocalStore {
 
   static double? getDouble(String key) => GetStorage().read(key);
 
-  static dynamic getData(String key) => GetStorage().read(key);
+  static dynamic getData(String key, bool value) => GetStorage().read(key);
 
   static void clearData() async => GetStorage().erase();
 }
@@ -40,15 +40,15 @@ class FetchDataFromLocalStore {
     App.token = LocalStore.getString('token') ?? '';
   }
 
-  suborgData() async {
-    List suborgList = LocalStore.getData('sub_orgs')??[];
-    for (var element in suborgList) {
-      App.subOrgs.add(Suborg.fromJson(element));
-    }
-
-    App.selectedSuborg = SelectedSuborg(
-      id: LocalStore.getInt('selected_suborgid')??-1,
-      name: LocalStore.getString('selected_suborgname')??"All",
-    );
-  }
+  // suborgData() async {
+  //   List suborgList = LocalStore.getData('sub_orgs')??[];
+  //   for (var element in suborgList) {
+  //     App.subOrgs.add(Suborg.fromJson(element));
+  //   }
+  //
+  //   App.selectedSuborg = SelectedSuborg(
+  //     id: LocalStore.getInt('selected_suborgid')??-1,
+  //     name: LocalStore.getString('selected_suborgname')??"All",
+  //   );
+  // }
 }
