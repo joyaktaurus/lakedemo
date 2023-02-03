@@ -9,6 +9,7 @@ import 'package:lakeshore/components/screen_dash_views.dart';
 import 'package:lakeshore/screens/dashboard/dashboard_controller.dart';
 import 'package:lakeshore/screens/leave_request/leave_request_view.dart';
 import '../../app.dart';
+import '../../components/app_alertbox.dart';
 import '../../components/dash_container.dart';
 import '../../components/screenn_dash_views.dart';
 import '../../my_theme.dart';
@@ -43,9 +44,10 @@ class DashBoardView extends GetView<DashboardController> {
                       children: [
                         IconButton(
                             onPressed: () {
-                              LocalStore.clearData();
-                              App.selectedSuborg = SelectedSuborg(id: -1, name: "All");
-                              Get.offNamed(Routes.login);
+                              MarkCleanAlert(context);
+                              // LocalStore.clearData();
+                              // App.selectedSuborg = SelectedSuborg(id: -1, name: "All");
+                              // Get.offNamed(Routes.login);
                             },
                             splashColor: Colors.grey[300],
                             splashRadius: 40,
@@ -105,7 +107,9 @@ class DashBoardView extends GetView<DashboardController> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text("Profile Photo", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
-                                                   IconButton(onPressed: () {}, icon: Icon(Icons.delete))
+                                                   IconButton(onPressed: () {
+                                                    RemoveProfileAlert(context);
+                                                   }, icon: Icon(Icons.delete))
                                                 ],
                                               ),
                                               SizedBox(height: Get.height*0.02,),
@@ -122,11 +126,11 @@ class DashBoardView extends GetView<DashboardController> {
                                                         child: Center(
                                                           child: IconButton(
                                                               onPressed: () {
+                                                                //controller.imageFromCamera();
                                                                 controller.takePhoto(
                                                                     ImageSource.camera);
                                                                 Get.back();
-                                                                // print(controller.pickedfile.value);
-                                                                //  controller.imageFromCamera();
+
                                                               },
                                                               icon: Icon(
                                                                 Icons.camera_alt,
@@ -195,26 +199,12 @@ class DashBoardView extends GetView<DashboardController> {
                                 width: 130,
                                            height: 130,
                                 fit: BoxFit.cover,).image,
-                        ),
+                             ),
                            ),
                          ),
                       ),
                     ),
                   ),
-                  // Obx( () =>
-                  //     CircleAvatar(
-                  //       maxRadius: 60,
-                  //       child: ClipOval(
-                  //         child:
-                  //         Image.file(controller.pickedfile.value!,
-                  //             width: 130,
-                  //           height: 130,
-                  //             fit: BoxFit.cover
-                  //         ),
-                  //       ),
-                  //     )
-                  // ),
-
                   SizedBox(height: Get.height * 0.03),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

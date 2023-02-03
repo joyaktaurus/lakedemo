@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../app.dart';
 import '../models/api_resp.dart';
@@ -248,6 +249,53 @@ class MyDio {
       throw Exception(e.toString());
     }
   }
+
+  Future<dynamic> customMultipart(
+      String path, {
+        data,
+        BuildContext? buildContext,
+        XFile? file,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceivedProgress,
+      }) async {
+    String fileName = file!.path.split('/').last;
+    print(fileName);
+    FormData data = FormData.fromMap({
+      "image": await MultipartFile.fromFile(
+        file.path,
+        filename: fileName,
+
+      ),
+    });
+    print(data);
+    Dio dio = Dio();
+
+    Response resp = await dio.post(path, data: data);
+
+    debugPrint("!!!!!!!!!!!!!! Request Begin !!!!!!!!!!!!!!!!!!!!!");
+    debugPrint(
+        "REQUEST[${resp.statusCode}] => PATH: ${resp.requestOptions.path}");
+    debugPrint("ResMethodType : [${resp.requestOptions.method}]");
+    resp.requestOptions.headers.forEach((k, v) => debugPrint('$k: $v'));
+
+    debugPrint("QueryParameters:");
+    resp.requestOptions.queryParameters.forEach((k, v) => debugPrint('$k: $v'));
+    debugPrint(resp.requestOptions.queryParameters.toString());
+
+    if (resp.requestOptions.data != null) {
+      debugPrint("Body: ${resp.requestOptions.data}");
+    }
+    log('resp >>>${resp.data}');
+    debugPrint("************** Response End ************************");
+    dynamic apiResp = resp.data;
+    log(apiResp.toString());
+    return apiResp;
+
+  }
+
 
   Future<dynamic> get(
       String path, {

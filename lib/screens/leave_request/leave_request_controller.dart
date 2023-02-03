@@ -97,7 +97,7 @@ class LeaveRequestController extends GetxController {
         confirmText: 'Confirm',
         errorFormatText: 'Enter valid date',
         errorInvalidText: 'Enter valid date range',
-        fieldLabelText: 'DOB',
+        //fieldLabelText: 'DOB',
         fieldHintText: 'Month/Date/Year',
         selectableDayPredicate: disableDate);
     if (pickedDate != null && pickedDate != selectedDate.value) {
@@ -127,7 +127,7 @@ class LeaveRequestController extends GetxController {
         confirmText: 'Confirm',
         errorFormatText: 'Enter valid date',
         errorInvalidText: 'Enter valid date range',
-        fieldLabelText: 'DOB',
+      //  fieldLabelText: 'DOB',
         fieldHintText: 'Month/Date/Year',
         selectableDayPredicate: disableendDate);
     if (pickedDate != null && pickedDate != selecteenddDate.value) {

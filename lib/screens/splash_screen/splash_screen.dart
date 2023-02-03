@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lakeshore/screens/login/login_screen.dart';
-
 import '../../app.dart';
 import '../../routes.dart';
 import '../../services/privilege_services.dart';
@@ -23,22 +22,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-     new Future.delayed(
-        const Duration(seconds: 3), () => Get.offNamed(Routes.login));
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await FetchDataFromLocalStore().userData();
+      App.token = App.user.token ?? '';
+      log("token>>${App.user.token}");
+      errM(() => checkAlreadyLogged());
+    });
   }
-
-  // void initState() {
-  //   super.initState();
-  //     new Future.delayed(
-  //         const Duration(seconds: 3), () => Get.offNamed(Routes.login));
-  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-  //     await FetchDataFromLocalStore().userData();
-  //    // await FetchDataFromLocalStore().suborgData();
-  //     App.token = App.customer.token ?? '';
-  //     log("token>>${App.customer.token}");
-  //     errM(() => checkAlreadyLogged());
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+
   Future<void> checkAlreadyLogged() async {
     Future.delayed(
       const Duration(milliseconds: 1400),
@@ -65,8 +56,6 @@ class _SplashScreenState extends State<SplashScreen> {
         if (App.token.isEmpty) {
           Get.offNamed(Routes.login);
         } else {
-          // bool val = PrivilegeServices.checkPermission(resource: 'INVENTORY_ITEMS', permission: ['VIEW']);
-          // log('checkpermission >>>$val');
           Get.offNamed(Routes.dashBoardPage);
         }
       },

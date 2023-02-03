@@ -140,7 +140,7 @@ class LoginView extends GetView<LoginController> {
                               //  Get.toNamed(Routes.resetPassPage);
                               // }
                               //
-                              //  Get.offNamed(Routes.resetPassPage);
+                               // Get.offNamed(Routes.resetPassPage);
                             },
                             isEnabled: true,
                             padding: const EdgeInsets.all(30),
