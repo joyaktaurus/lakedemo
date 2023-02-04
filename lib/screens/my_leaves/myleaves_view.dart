@@ -7,6 +7,7 @@ import 'package:lakeshore/screens/leave_request/leave_request_controller.dart';
 import '../../components/background.dart';
 import '../../components/dash_container.dart';
 import '../../components/request_container.dart';
+import '../../components/rounded_loader.dart';
 import '../../my_theme.dart';
 import '../../utils/asset_helper.dart';
 import '../../utils/my_utils.dart';
@@ -200,12 +201,16 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                         return true;
                       },
                       child:
-                        ListView.builder(
-
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: RequestContainer(
+                      Obx(() => controller.status.value == true
+                          ?
+                          // GetX<MyLeavesController>(
+                          //   builder: (controller) {
+                          //     return
+                                ListView.builder(
+                                  itemCount: controller.myLeaves.length,
+                                  itemBuilder: (BuildContext context,
+                                      int index) {
+                                    return RequestContainer(
                                         width: Get.width * 0.9,
                                         height: Get.height * 0.25,
                                         child: Padding(
@@ -221,12 +226,12 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                         .spaceBetween,
                                                     children: [
 
-                                                   Text(
-                                                    // Get.arguments[ "reason"],
-                                                            "Going for a trip",
-                                                            style: TextStyle(
-                                                                fontSize: 15),
-                                                          ),
+                                                      Text(
+                                                        // Get.arguments[ "reason"],
+                                                        "Going for a trip",
+                                                        style: TextStyle(
+                                                            fontSize: 15),
+                                                      ),
 
 
                                                       Padding(
@@ -250,13 +255,15 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                           child: Wrap(
                                                             children: <Widget>[
                                                               Icon(
-                                                                Icons.lock_clock,
+                                                                Icons
+                                                                    .lock_clock,
                                                                 color: Colors
                                                                     .orangeAccent,
                                                                 size: 24.0,
                                                               ),
                                                               SizedBox(
-                                                                width: Get.width *
+                                                                width: Get
+                                                                    .width *
                                                                     0.02,
                                                               ),
                                                               Text("Pending",
@@ -287,34 +294,36 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                       ),
                                                       Row(
                                                           children: [
-                                                                Text(
-                                                                    'Leave from : ',
-                                                                    style: TextStyle(
-                                                                      color:
-                                                                      Colors.grey,
-                                                                      fontSize: 14,
-                                                                    )),
-                                                                Text(
-                                                                     Get.arguments[ "StartDate"],
-                                                                  //  'Dec 21, 2022 - ',
-                                                                    style: const TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize: 15,
-                                                                        fontWeight:
-                                                                        FontWeight
-                                                                            .w500)),
-                                                                Text(" - "),
-                                                                Text(
-                                                                    Get.arguments[ "EndDate"],
-                                                                    style: const TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize: 15,
-                                                                        fontWeight:
-                                                                        FontWeight
-                                                                            .w500)),
-                                                              ]),
+                                                            Text(
+                                                                'Leave from : ',
+                                                                style: TextStyle(
+                                                                  color:
+                                                                  Colors.grey,
+                                                                  fontSize: 14,
+                                                                )),
+                                                            Text(
+                                                                Get
+                                                                    .arguments[ "StartDate"],
+                                                                //  'Dec 21, 2022 - ',
+                                                                style: const TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize: 15,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w500)),
+                                                            Text(" - "),
+                                                            Text(
+                                                                Get
+                                                                    .arguments[ "EndDate"],
+                                                                style: const TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize: 15,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w500)),
+                                                          ]),
                                                     ],
                                                   ),
                                                   SizedBox(
@@ -328,7 +337,8 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                       Container(
                                                           height:
                                                           Get.height * 0.05,
-                                                          width: Get.width * 0.5,
+                                                          width: Get.width *
+                                                              0.5,
                                                           child:
                                                           SingleChildScrollView(
                                                             child: Text(
@@ -365,16 +375,21 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                             icon: const Icon(
                                                               Icons
                                                                   .delete_outline,
-                                                              color: Colors.blue,
+                                                              color: Colors
+                                                                  .blue,
                                                             ),
                                                           )
                                                         ],
                                                       )
                                                     ],
                                                   )
-                                                ]))));
-
-                        }),
+                                                ])));
+                                  }
+                              //    )
+                          //  }
+                            ) :
+                          Center(child: RoundedLoader()),
+                        ),
                       ),
                     ),
                   ),

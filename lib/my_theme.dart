@@ -29,7 +29,7 @@ class MyTheme {
     return GoogleFonts.roboto(
       color: color ?? const Color(0XFF3A3A3A).withOpacity(0.8),
       fontSize: textSize ?? 15,
-      fontWeight: fontWeight ?? FontWeight.w200,
+      fontWeight: fontWeight ?? FontWeight.normal,
       letterSpacing: letterSpacing,
     );
   }

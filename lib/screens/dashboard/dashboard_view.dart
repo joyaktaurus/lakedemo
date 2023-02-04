@@ -1,6 +1,5 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
@@ -39,31 +38,30 @@ class DashBoardView extends GetView<DashboardController> {
               Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 50),
+                    padding: const EdgeInsets.only(left: 100, top: 50),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        IconButton(
-                            onPressed: () {
-                              MarkCleanAlert(context);
-                              // LocalStore.clearData();
-                              // App.selectedSuborg = SelectedSuborg(id: -1, name: "All");
-                              // Get.offNamed(Routes.login);
-                            },
-                            splashColor: Colors.grey[300],
-                            splashRadius: 40,
-                            icon: Icon(
-                              Icons.arrow_back_rounded,
-                              color: Colors.white,
-                              size: 35,
-                            )),
-                        SizedBox(width: Get.width * 0.15),
                         Text(
                           "Dash Board",
                           style: MyTheme.regularTextStyle(
                               color: Colors.white,
                               textSize: 24,
                               fontWeight: FontWeight.w500),
-                        )
+                        ),
+                        SizedBox(width: Get.width * 0.15),
+                        IconButton(
+                            onPressed: () {
+                              LocalStore.clearData();
+                              App.selectedSuborg =
+                                  SelectedSuborg(id: -1, name: "All");
+                              SystemNavigator.pop();
+                            },
+                            icon: Icon(
+                              Icons.logout,
+                              color: Colors.white,
+                            ))
                       ],
                     ),
                   ),
@@ -72,19 +70,17 @@ class DashBoardView extends GetView<DashboardController> {
                     child: CircleAvatar(
                       radius: 60.0,
                       backgroundColor: Colors.white,
-                      child: Obx( ()=>
-                         GestureDetector(
-                           onTap: () {
-                             Get.to(ProfileImageView(),
-                                 arguments: {
-                                   "image" : controller.pickedfile.value,
-                                 }
-                             );
-                           },
-                           child: Hero(
-                             tag: 'my-hero-animation-tag',
-                             child: CircleAvatar(
-                             // foregroundImage: AssetImage(AssetHelper.lakeSmall),
+                      child: Obx(
+                        () => GestureDetector(
+                          onTap: () {
+                            Get.to(ProfileImageView(), arguments: {
+                              "image": controller.pickedfile.value,
+                            });
+                          },
+                          child: Hero(
+                            tag: 'my-hero-animation-tag',
+                            child: CircleAvatar(
+                              // foregroundImage: AssetImage(AssetHelper.lakeSmall),
                               child: Align(
                                 alignment: Alignment.bottomRight,
                                 child: GestureDetector(
@@ -93,56 +89,79 @@ class DashBoardView extends GetView<DashboardController> {
                                       Container(
                                         decoration: BoxDecoration(
                                             color: Colors.white,
-                                          borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(10),
-                                            topLeft: Radius.circular(10),
-                                          )),
+                                            borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                            )),
                                         height: 170,
                                         child: Padding(
                                           padding: const EdgeInsets.all(12.0),
                                           child: Column(
-                                           crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
-                                                  Text("Profile Photo", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
-                                                   IconButton(onPressed: () {
-                                                    RemoveProfileAlert(context);
-                                                   }, icon: Icon(Icons.delete))
+                                                  Text(
+                                                    "Profile Photo",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                  IconButton(
+                                                      onPressed: () {
+                                                        controller.removeImages();
+                                                        // RemoveProfileAlert(
+                                                        //     context);
+                                                      },
+                                                      icon: Icon(Icons.delete))
                                                 ],
                                               ),
-                                              SizedBox(height: Get.height*0.02,),
+                                              SizedBox(
+                                                height: Get.height * 0.02,
+                                              ),
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.spaceEvenly,
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
                                                 children: [
                                                   Column(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.center,
+                                                        CrossAxisAlignment
+                                                            .center,
                                                     children: [
                                                       CircleAvatar(
-                                                        backgroundColor: Colors.blue,
+                                                        backgroundColor:
+                                                            Colors.blue,
                                                         child: Center(
                                                           child: IconButton(
                                                               onPressed: () {
                                                                 //controller.imageFromCamera();
                                                                 controller.takePhoto(
-                                                                    ImageSource.camera);
+                                                                    ImageSource
+                                                                        .camera);
                                                                 Get.back();
-
                                                               },
                                                               icon: Icon(
-                                                                Icons.camera_alt,
-                                                                color: Colors.white,
+                                                                Icons
+                                                                    .camera_alt,
+                                                                color: Colors
+                                                                    .white,
                                                                 size: 25,
                                                               )),
                                                         ),
                                                       ),
-                                                      SizedBox(height: Get.height * 0.01),
+                                                      SizedBox(
+                                                          height: Get.height *
+                                                              0.01),
                                                       Text(
                                                         "Camera",
-                                                        style: TextStyle(fontSize: 18),
+                                                        style: TextStyle(
+                                                            fontSize: 18),
                                                       )
                                                     ],
                                                   ),
@@ -150,26 +169,32 @@ class DashBoardView extends GetView<DashboardController> {
                                                     child: Column(
                                                       children: [
                                                         CircleAvatar(
-                                                          backgroundColor: Colors.blue,
+                                                          backgroundColor:
+                                                              Colors.blue,
                                                           child: Center(
                                                             child: IconButton(
                                                                 onPressed: () {
                                                                   controller.Photogallery(
-                                                                      ImageSource.gallery);
+                                                                      ImageSource
+                                                                          .gallery);
                                                                   Get.back();
                                                                   // print(controller.pickedfile.value);
                                                                 },
                                                                 icon: Icon(
                                                                   Icons.image,
-                                                                  color: Colors.white,
+                                                                  color: Colors
+                                                                      .white,
                                                                   size: 25,
                                                                 )),
                                                           ),
                                                         ),
-                                                        SizedBox(height: Get.height * 0.01),
+                                                        SizedBox(
+                                                            height: Get.height *
+                                                                0.01),
                                                         Text(
                                                           "Gallery",
-                                                          style: TextStyle(fontSize: 18),
+                                                          style: TextStyle(
+                                                              fontSize: 18),
                                                         )
                                                       ],
                                                     ),
@@ -197,11 +222,12 @@ class DashBoardView extends GetView<DashboardController> {
                               backgroundImage: Image.file(
                                 controller.pickedfile.value!,
                                 width: 130,
-                                           height: 130,
-                                fit: BoxFit.cover,).image,
-                             ),
-                           ),
-                         ),
+                                height: 130,
+                                fit: BoxFit.cover,
+                              ).image,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -209,17 +235,18 @@ class DashBoardView extends GetView<DashboardController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
-                      Text(
+                      Text("  \  "
                         "Amelia",
                         style: MyTheme.regularTextStyle(
                             color: Colors.white,
                             textSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
-                      IconButton(onPressed: () {
-                        Get.toNamed(Routes.editViewPage);
-                      }, icon: Icon(Icons.edit, color: Colors.white))
+                      IconButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.editViewPage);
+                          },
+                          icon: Icon(Icons.edit, color: Colors.white))
                     ],
                   ),
                   Text(
@@ -235,7 +262,7 @@ class DashBoardView extends GetView<DashboardController> {
                         color: Colors.white,
                         textSize: 16,
                         fontWeight: FontWeight.w500),
-                  )
+                  ),
                 ],
               ),
             ]),

@@ -17,8 +17,8 @@ class LeaveRequest {
     required this.yourReason,
   });
 }
-//List<LeaveRequest> lrequest = <LeaveRequest>[
-// final List<LeaveRequest> lrequest = [
+// List<LeaveRequest> lrequest = <LeaveRequest>
+// final List<LeaveRequest> lrequestt = [
 //   LeaveRequest(
 //     id: 1,
 //     leaveType: 'Casual Leave',
@@ -49,4 +49,4 @@ class LeaveRequest {
 //     deptHead: 'Ward',
 //     yourReason: 'cbhfghg4',
 //   ),
-//];
+// ];
