@@ -5,11 +5,12 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:lakeshore/components/background.dart';
 import 'package:lakeshore/screens/reset_password/reset_controller.dart';
 import '../../components/app_buttons.dart';
+import '../../components/rounded_loader.dart';
 import '../../my_theme.dart';
 import '../../routes.dart';
 import '../../utils/asset_helper.dart';
+import '../../utils/err_m.dart';
 import '../../utils/my_utils.dart';
-
 
 class ResetPassView extends GetView<ResetController> {
   const ResetPassView({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class ResetPassView extends GetView<ResetController> {
         },
         child: Scaffold(
           body: Stack(children: [
-            BackGround(),
+         //   BackGround(),
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(top: 200, left: 40, right: 40),
@@ -49,29 +50,30 @@ class ResetPassView extends GetView<ResetController> {
                             controller: controller.userCtrl,
                             focusNode: controller.userCtrlfocusNode,
                             decoration: textBoxDecoration(
-                                'Email',),
+                              'Email',
+                            ),
                             textInputAction: TextInputAction.next,
                           ),
-                        SizedBox(
-                          height: Get.height * 0.03,
+                          SizedBox(
+                            height: Get.height * 0.03,
                           ),
                           TextFormField(
                             obscureText: true,
                             obscuringCharacter: '*',
-                            controller: controller.pswdCtrl,
-                            focusNode: controller.pswdCtrlfocusNode,
+                            controller: controller.newpswdCtrl,
+                            focusNode: controller.newpswdCtrlfocusNode,
                             decoration: passBoxDecoration(
                               'New Password',
                             ),
                           ),
-                         SizedBox(
-                           height: Get.height * 0.03,
+                          SizedBox(
+                            height: Get.height * 0.03,
                           ),
                           TextFormField(
                             obscureText: true,
                             obscuringCharacter: '*',
-                            controller: controller.resetCtrl,
-                            focusNode: controller.resetCtrlfocusNode,
+                            controller: controller.newresetCtrl,
+                            focusNode: controller.newresetCtrlfocusNode,
                             decoration: passBoxDecoration(
                               'Confirm Password',
                             ),
@@ -88,17 +90,25 @@ class ResetPassView extends GetView<ResetController> {
               child: Expanded(
                 child: Center(
                   child: Column(children: [
-                    MAButton(
-                      text: 'Submit',
-                      buttonPress: () {
-                        Get.offNamed(Routes.dashBoardPage);
-                      },
-                      isEnabled: true,
-                      padding: const EdgeInsets.only(top: 120),
-                      height: Get.height * 0.07,
-                      width: Get.width * 0.4,
-                      clipBehavior: 0,
-                      radius: 30,
+                    Obx(
+                      () => controller.isLoggingProgress.value == true
+                          ? Padding(
+                            padding: const EdgeInsets.only(top: 150),
+                            child: const RoundedLoader(),
+                          )
+                          : MAButton(
+                              text: 'Submit',
+                              buttonPress: () {
+                                MyUtils.hideKeyboard();
+                                errM(() => controller.doSubmit());
+                              },
+                              isEnabled: true,
+                              padding: const EdgeInsets.only(top: 120),
+                              height: Get.height * 0.07,
+                              width: Get.width * 0.4,
+                              clipBehavior: 0,
+                              radius: 30,
+                            ),
                     ),
                   ]),
                 ),
@@ -120,12 +130,13 @@ InputDecoration textBoxDecoration(hintText) {
     hintStyle: MyTheme.regularTextStyle(textSize: 14, color: Colors.black),
     fillColor: Colors.white,
     filled: true,
-   border: OutlineInputBorder(
+    border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
         borderSide: BorderSide(color: Colors.grey)),
-   disabledBorder: InputBorder.none,
+    disabledBorder: InputBorder.none,
   );
 }
+
 InputDecoration passBoxDecoration(hintText) {
   return InputDecoration(
     hintText: hintText,

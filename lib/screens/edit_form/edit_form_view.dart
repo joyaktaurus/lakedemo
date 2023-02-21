@@ -22,7 +22,7 @@ class EditFormView extends GetView<EditFormViewController> {
         },
         child: Scaffold(
             body: Stack(children: [
-          BackGround(),
+        //  BackGround(),
           Padding(
             padding: const EdgeInsets.only(left: 20, top: 50),
             child: Row(

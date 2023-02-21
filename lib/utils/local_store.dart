@@ -2,7 +2,6 @@ import 'package:get_storage/get_storage.dart';
 
 import '../app.dart';
 import '../models/login_resp.dart';
-import '../services/privileges_resp.dart';
 
 abstract class LocalStore {
   static void setData(String key, dynamic value) =>

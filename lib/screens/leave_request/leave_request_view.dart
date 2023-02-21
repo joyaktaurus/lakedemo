@@ -32,7 +32,7 @@ final LeaveRequestController leaveRequestController = Get.put(LeaveRequestContro
 
         body: Stack(
           children: [
-            BackGround(),
+          //  BackGround(),
             DashContainer(
               height: Get.height * 0.28,
               child: Stack(
@@ -270,7 +270,6 @@ final LeaveRequestController leaveRequestController = Get.put(LeaveRequestContro
                           width: Get.width * 0.9,
                           height: Get.height * 0.13,
                           child: Container(
-
                             width: Get.width * 0.9,
                             height: Get.height * 0.13,
                             child: TextFormField(
@@ -295,6 +294,8 @@ final LeaveRequestController leaveRequestController = Get.put(LeaveRequestContro
                         ),
                       ],
                     ),
+
+
                   ),
                 ),
               ),

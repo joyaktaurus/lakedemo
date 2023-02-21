@@ -21,7 +21,7 @@ class EditView extends GetView<EditViewController> {
         },
         child: Scaffold(
             body: Stack(children: [
-          BackGround(),
+        //  BackGround(),
           Column(
             children: [
               Padding(

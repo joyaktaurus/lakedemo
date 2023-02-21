@@ -9,6 +9,8 @@ import 'package:lakeshore/screens/leave_request/leave_request_binding.dart';
 import 'package:lakeshore/screens/leave_request/leave_request_view.dart';
 import 'package:lakeshore/screens/login/login_binding.dart';
 import 'package:lakeshore/screens/login/login_screen.dart';
+import 'package:lakeshore/screens/my_attendence/myattendence_bindings.dart';
+import 'package:lakeshore/screens/my_attendence/myattendence_view.dart';
 import 'package:lakeshore/screens/my_leaves/myleaves_bindings.dart';
 import 'package:lakeshore/screens/my_leaves/myleaves_view.dart';
 import 'package:lakeshore/screens/my_shift/myshift_bindings.dart';
@@ -33,6 +35,7 @@ class Routes {
   static const editViewPage = '/editviewpage';
   static const editFormViewPage = '/editformviewpage';
   static const profileImageViewPage = '/profileimageviewpage';
+  static const myAttendViewPage = '/myattendviewpage';
   static final routes = [
     GetPage(
       name: splash,
@@ -87,6 +90,11 @@ class Routes {
       binding: ProfileImageViewBindings(),
       name: profileImageViewPage,
       page: () => const ProfileImageView(),
+    ),
+    GetPage(
+      binding: MyAttendViewBindings(),
+      name: myAttendViewPage,
+      page: () => MyAttendView(),
     ),
   ];
 }

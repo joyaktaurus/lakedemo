@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-
 import '../../components/background.dart';
 import '../../components/request_container.dart';
 import '../../my_theme.dart';
@@ -20,8 +19,8 @@ class NoticeBoardView extends GetView<NoticeBoardController> {
         },
         child: Scaffold(
             body: Stack(children: [
-          BackGround(),
-          Padding(
+          BackGround(
+          child: Padding(
             padding: const EdgeInsets.only(left: 20, top: 50),
             child: Row(
               children: [
@@ -46,7 +45,7 @@ class NoticeBoardView extends GetView<NoticeBoardController> {
             )
               ],
             ),
-          ),
+          ),),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 100),
             child: Expanded(

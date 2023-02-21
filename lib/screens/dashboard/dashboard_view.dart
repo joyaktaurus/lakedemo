@@ -32,7 +32,7 @@ class DashBoardView extends GetView<DashboardController> {
           body: Stack(children: [
         Column(children: [
           DashContainer(
-            height: Get.height * 0.50,
+            height: Get.height * 0.43,
             child: Stack(children: [
               Image.asset(AssetHelper.loginImage),
               Column(
@@ -65,7 +65,7 @@ class DashBoardView extends GetView<DashboardController> {
                       ],
                     ),
                   ),
-                  SizedBox(height: Get.height * 0.03),
+                  SizedBox(height: Get.height * 0.01),
                   SizedBox(
                     child: CircleAvatar(
                       radius: 60.0,
@@ -231,7 +231,7 @@ class DashBoardView extends GetView<DashboardController> {
                       ),
                     ),
                   ),
-                  SizedBox(height: Get.height * 0.03),
+                  SizedBox(height: Get.height * 0.01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -267,7 +267,38 @@ class DashBoardView extends GetView<DashboardController> {
               ),
             ]),
           ),
-          SizedBox(height: Get.height * 0.05),
+          SizedBox(height: Get.height * 0.03),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              FittedBox(
+                child: ScreennDashViews(
+                  width: Get.width * 0.4,
+                  height: Get.height * 0.15,
+                  text: "My Profile",
+                  onTap: () {
+                    Get.toNamed(Routes.myShiftPage);
+                  },
+                  image: AssetHelper.user,
+                  icon: Icons.calendar_month,
+                  //svg: 'assets/svg/🦆 icon _Alternate Calendar_.svg',
+                ),
+              ),
+              FittedBox(
+                child: ScreenDashViews(
+                  width: Get.width * 0.4,
+                  height: Get.height * 0.15,
+                  text: "My Attendence",
+                  onTap: () {
+                    Get.toNamed(Routes.myAttendViewPage);
+                  },
+                  image: AssetHelper.noticeBoard,
+                  //  svg: 'assets/svg/🦆 icon _Alternate Calendar_.svg',
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: Get.height * 0.03),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -289,8 +320,8 @@ class DashBoardView extends GetView<DashboardController> {
                   height: Get.height * 0.15,
                   text: "Leave Request",
                   onTap: () {
-                    Get.to(LeaveRequestView(),
-                        arguments: {"Profile": controller.pickedfile.value});
+                    // Get.to(LeaveRequestView(),
+                    //     arguments: {"Profile": controller.pickedfile.value});
                   },
                   image: AssetHelper.leaveRequest,
                   // svg: 'assets/svg/🦆 icon _File Signature_.svg',

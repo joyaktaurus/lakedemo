@@ -7,6 +7,8 @@ import '../../models/leave_request_model.dart';
 
 
 class LeaveRequestController extends GetxController {
+  int id = 1;
+
   final  reasonCtrl = TextEditingController;
 
   RxString dropdownText = 'Leave Type '.obs as RxString;

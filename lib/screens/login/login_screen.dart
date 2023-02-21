@@ -28,7 +28,7 @@ class LoginView extends GetView<LoginController> {
         },
         child: Scaffold(
           body: Stack(children: [
-            BackGround(),
+           // BackGround(),
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(top: 200, left: 40, right: 40),
@@ -128,8 +128,8 @@ class LoginView extends GetView<LoginController> {
                           child: MAButton(
                             text: 'Login',
                             buttonPress: () {
-                              MyUtils.hideKeyboard();
-                              errM(() => controller.doLogin());
+                              // MyUtils.hideKeyboard();
+                              // errM(() => controller.doLogin());
                               // .............................
                               // final isValidate = controller
                               //     .formkey.currentState!
@@ -140,7 +140,7 @@ class LoginView extends GetView<LoginController> {
                               //  Get.toNamed(Routes.resetPassPage);
                               // }
                               //
-                               // Get.offNamed(Routes.resetPassPage);
+                                Get.offNamed(Routes.dashBoardPage);
                             },
                             isEnabled: true,
                             padding: const EdgeInsets.all(30),

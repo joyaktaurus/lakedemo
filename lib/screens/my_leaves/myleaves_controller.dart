@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:lakeshore/models/leave_request_model.dart';
 import 'package:lakeshore/screens/leave_request/leave_request_controller.dart';
@@ -5,9 +6,20 @@ import 'package:lakeshore/screens/leave_request/leave_request_controller.dart';
 
 
 class MyLeavesController extends GetxController {
+  int idFromFirstController = Get.find<LeaveRequestController>().id;
+
+
+  @override
+  void onInit() {
+    super.onInit();
+    debugPrint('$idFromFirstController'); // prints 1
+  }
+
+
   // final count = 0.obs;
   // increment() => count.value++;
   RxBool status = false.obs;
+
 
   RxList<LeaveRequest> myleavess = <LeaveRequest>[].obs;
   RxString description = ''.obs as RxString;
@@ -19,11 +31,11 @@ class MyLeavesController extends GetxController {
   //   myLeaves.add(leaverequest);
   // }
 
-  @override
-  void onInit() {
-    super.onInit();
-    //fetchRequest();
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   //fetchRequest();
+  // }
 
   void fetchRequest() async {
     await Future.delayed(Duration(seconds: 1));

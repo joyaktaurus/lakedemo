@@ -23,7 +23,7 @@ class MyShiftView extends GetView<MyShiftController> {
         },
         child: Scaffold(
             body: Stack(children: [
-          BackGround(),
+       //   BackGround(),
           Column(children: [
             DashContainer(
               height: Get.height * 0.28,

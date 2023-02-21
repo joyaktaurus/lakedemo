@@ -28,7 +28,7 @@ class MyLeavesdView extends GetView<MyLeavesController> {
       child: Scaffold(
         body: Stack(
           children: [
-            BackGround(),
+          //  BackGround(),
             Column(
               children: [
                 DashContainer(
@@ -203,9 +203,9 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                       child:
                       Obx(() => controller.status.value == true
                           ?
-                          // GetX<MyLeavesController>(
-                          //   builder: (controller) {
-                          //     return
+                          GetX<MyLeavesController>(
+                            builder: (controller) {
+                              return
                                 ListView.builder(
                                   itemCount: controller.myLeaves.length,
                                   itemBuilder: (BuildContext context,
@@ -382,18 +382,17 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                         ],
                                                       )
                                                     ],
-                                                  )
+                                                  ),
                                                 ])));
                                   }
-                              //    )
-                          //  }
+                                  );
+                            }
                             ) :
                           Center(child: RoundedLoader()),
                         ),
                       ),
                     ),
                   ),
-
               ],
             ),
           ],
