@@ -17,6 +17,10 @@ import 'package:lakeshore/screens/my_leaves/myleaves_bindings.dart';
 import 'package:lakeshore/screens/my_leaves/myleaves_view.dart';
 import 'package:lakeshore/screens/my_shift/myshift_bindings.dart';
 import 'package:lakeshore/screens/my_shift/myshift_view.dart';
+import 'package:lakeshore/screens/mytrialone/mytrial_bindigs.dart';
+import 'package:lakeshore/screens/mytrialone/mytrial_view.dart';
+import 'package:lakeshore/screens/mytrialtwo/mytrialt_bindings.dart';
+import 'package:lakeshore/screens/mytrialtwo/mytrialt_view.dart';
 import 'package:lakeshore/screens/noticeboard/noticeboard_bindings.dart';
 import 'package:lakeshore/screens/noticeboard/noticeboard_view.dart';
 import 'package:lakeshore/screens/profile_image_show/profile_image_binding.dart';
@@ -39,6 +43,8 @@ class Routes {
   static const profileImageViewPage = '/profileimageviewpage';
   static const myAttendViewPage = '/myattendviewpage';
   static const myInvoiceViewPage = '/myinvoiceviewpage';
+  static const myTrialOnePage = '/mytrialonepage';
+  static const myTrialTwoPage = '/mytrialtwopage';
 
   static final routes = [
     GetPage(
@@ -104,6 +110,16 @@ class Routes {
       binding: MyInvoiceViewBindings(),
       name: myInvoiceViewPage,
       page: () => MyInvoiceView(),
+    ),
+    GetPage(
+      binding: MyTwoBindings(),
+      name: myTrialTwoPage,
+      page: () => MyTrialTwo(),
+    ),
+    GetPage(
+      binding: MyOneBindings(),
+      name: myTrialOnePage,
+      page: () => MyTrialOne(),
     ),
   ];
 }
