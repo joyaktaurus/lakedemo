@@ -14,9 +14,9 @@ import '../my_leaves/myleaves_controller.dart';
 import 'leave_request_controller.dart';
 
 class LeaveRequestView extends GetView<LeaveRequestController> {
-   LeaveRequestView({Key? key}) : super(key: key);
+  LeaveRequestView({Key? key}) : super(key: key);
   final  myLeavesController = Get.put<MyLeavesController>.obs;
-final LeaveRequestController leaveRequestController = Get.put(LeaveRequestController());
+  final LeaveRequestController leaveRequestController = Get.put(LeaveRequestController());
   @override
   Widget build(BuildContext context) {
 
@@ -28,14 +28,14 @@ final LeaveRequestController leaveRequestController = Get.put(LeaveRequestContro
 
         body: Stack(
           children: [
-          //  BackGround(),
+            //  BackGround(),
             DashContainer(
               height: Get.height * 0.28,
               child: Stack(
                   children: [
                     Image.asset(AssetHelper.loginImage),
-              Stack(children: [
-                  Image.asset(AssetHelper.loginImage), Column(
+                    Stack(children: [
+                      Image.asset(AssetHelper.loginImage), Column(
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 20, top: 50),
@@ -97,7 +97,7 @@ final LeaveRequestController leaveRequestController = Get.put(LeaveRequestContro
                           ),
                         ],
                       ),
-                  ]  ),
+                    ]  ),
                   ] ),
             ),
             //  SizedBox(height: Get.height * 0.02),
@@ -259,16 +259,16 @@ final LeaveRequestController leaveRequestController = Get.put(LeaveRequestContro
                         text: 'Submit Request',
                         buttonPress: () {
 
-                        //  myLeavesController.
+                          //  myLeavesController.
                           Get.to(MyLeavesdView(),
-                               arguments: {
-                                 "LeaveType" : controller.dropdownText.value,
-                                 "StartDate" : controller.selectedDate.value,
-                                 "EndDate": controller.selecteenddDate.value
-                                     .toString(),
+                              arguments: {
+                                "LeaveType" : controller.dropdownText.value,
+                                "StartDate" : controller.selectedDate.value,
+                                "EndDate": controller.selecteenddDate.value
+                                    .toString(),
                                 "Reason" : controller.resnCtrl.value
 
-                               }
+                              }
                           );
                         },
                         isEnabled: true,

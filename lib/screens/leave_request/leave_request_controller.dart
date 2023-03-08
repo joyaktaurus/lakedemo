@@ -26,7 +26,7 @@ class LeaveRequestController extends GetxController {
   }
 
   ///////////////////////////
- // final reasonCtrl = TextEditingController;
+  // final reasonCtrl = TextEditingController;
 
   final ltypeController = TextEditingController();
   final sdateController = TextEditingController();
@@ -56,7 +56,7 @@ class LeaveRequestController extends GetxController {
   }
   /////////////////////////////////
   int id = 1;
-final resnCtrl = TextEditingController();
+  final resnCtrl = TextEditingController();
 
   RxString dropdownText = 'Leave Type '.obs as RxString;
   List<String> df = [
