@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:lakeshore/utils/app_validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../app.dart';
 import '../../models/api_resp.dart';
 import '../../models/login_resp.dart';
@@ -83,11 +82,7 @@ class LoginController extends GetxController {
       LocalStore.setData('user_name', username);
 
       App.user = user;
-
       if (user.emailVerified == true) {
-
-
-
         Get.offAllNamed(Routes.dashBoardPage);
       } else {
         showMsg("Email not verified", "Failed");

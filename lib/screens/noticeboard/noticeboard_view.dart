@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import '../../components/background.dart';
-import '../../components/request_container.dart';
 import '../../my_theme.dart';
 import '../../utils/my_utils.dart';
 import 'noticeboard_controller.dart';

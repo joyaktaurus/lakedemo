@@ -2,14 +2,61 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:lakeshore/screens/my_leaves/myleaves_view.dart';
 
 import '../../models/leave_request_model.dart';
 
-
 class LeaveRequestController extends GetxController {
-  int id = 1;
 
-  final  reasonCtrl = TextEditingController;
+  var lrequest = <LeaveRequest>[].obs;
+
+  void addLeaves(String leaveType, String startDate, String endDate,
+      String leaveDay, String deptHead, String yourReason) {
+    lrequest.add(LeaveRequest(
+        leaveType: leaveType,
+        startDate: startDate,
+        endDate: endDate,
+        leaveDay: leaveDay,
+        deptHead: deptHead,
+        yourReason: yourReason));
+  }
+
+  List<LeaveRequest> getLeaves() {
+    return lrequest.toList();
+  }
+
+  ///////////////////////////
+ // final reasonCtrl = TextEditingController;
+
+  final ltypeController = TextEditingController();
+  final sdateController = TextEditingController();
+  final edateController = TextEditingController();
+  final ldayController = TextEditingController();
+  final dheadController = TextEditingController();
+  final yreasonController = TextEditingController();
+
+  void submit() {
+    final leaveType = ltypeController.text;
+    final startDate = sdateController.text;
+    final endDate = edateController;
+    final leaveDay = ldayController.text;
+    final deptHead = dheadController.text;
+    final yourReason = yreasonController;
+
+    addLeaves( leaveType, startDate, endDate as String, leaveDay, deptHead, yourReason as String);
+
+    ltypeController.clear();
+    sdateController.clear();
+    edateController.clear();
+    ldayController.clear();
+    dheadController.clear();
+    yreasonController.clear();
+
+    Get.to(MyLeavesdView());
+  }
+  /////////////////////////////////
+  int id = 1;
+final resnCtrl = TextEditingController();
 
   RxString dropdownText = 'Leave Type '.obs as RxString;
   List<String> df = [
@@ -129,7 +176,7 @@ class LeaveRequestController extends GetxController {
         confirmText: 'Confirm',
         errorFormatText: 'Enter valid date',
         errorInvalidText: 'Enter valid date range',
-      //  fieldLabelText: 'DOB',
+        //  fieldLabelText: 'DOB',
         fieldHintText: 'Month/Date/Year',
         selectableDayPredicate: disableendDate);
     if (pickedDate != null && pickedDate != selecteenddDate.value) {
@@ -148,8 +195,4 @@ class LeaveRequestController extends GetxController {
   Rx<String> textController = 'Reason'.obs as RxString;
 
   RxString controllerText = ''.obs;
-
-
-
-
 }

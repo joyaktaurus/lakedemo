@@ -30,4 +30,5 @@ abstract class AssetHelper {
    static get document => images("New Document.png");
    static get leaveRequest => images("File Signature_.png");
    static get user => images("User Circle_.png");
+   static get clock => images("icon _Clock_.png");
 }

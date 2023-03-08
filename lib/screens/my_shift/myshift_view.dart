@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lakeshore/components/request_container.dart';
-import '../../components/background.dart';
 import '../../components/dash_container.dart';
 import '../../my_theme.dart';
 import '../../utils/asset_helper.dart';

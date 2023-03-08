@@ -6,13 +6,13 @@ import 'package:lakeshore/screens/leave_request/leave_request_controller.dart';
 
 
 class MyLeavesController extends GetxController {
-  int idFromFirstController = Get.find<LeaveRequestController>().id;
-
+ // int idFromFirstController = Get.find<LeaveRequestController>().id;
+  final LeaveRequestController controllerl = Get.put(LeaveRequestController());
 
   @override
   void onInit() {
     super.onInit();
-    debugPrint('$idFromFirstController'); // prints 1
+  //  debugPrint('$idFromFirstController'); // prints 1
   }
 
 
@@ -41,7 +41,7 @@ class MyLeavesController extends GetxController {
     await Future.delayed(Duration(seconds: 1));
     var requestResponse = [
       LeaveRequest(
-        id: 1,
+       // id: 1,
         leaveType: 'Casual Leave',
         startDate: '11-02-2023',
         endDate: '14-02-2023',
@@ -50,7 +50,7 @@ class MyLeavesController extends GetxController {
         yourReason: 'bnbvnb',
       ),
       LeaveRequest(
-        id: 2,
+     //   id: 2,
         leaveType: 'Casual Leave',
         startDate: '21-02-2023',
         endDate: '14-03-2023',
@@ -59,7 +59,7 @@ class MyLeavesController extends GetxController {
         yourReason: '4cvbb',
       ),
       LeaveRequest(
-        id: 3,
+     //   id: 3,
         leaveType: 'Sick Leave',
         startDate: '15-02-2023',
         endDate: '24-02-2023',

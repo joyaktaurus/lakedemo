@@ -9,11 +9,8 @@ class RequestContainer extends StatelessWidget {
   const RequestContainer({
     Key? key,
     required this.width,
-
     required this.child,
     required this.height,
-
-
 
   }) : super(key: key);
 

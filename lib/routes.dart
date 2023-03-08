@@ -5,6 +5,8 @@ import 'package:lakeshore/screens/edit_details/edit_binding.dart';
 import 'package:lakeshore/screens/edit_details/edit_view.dart';
 import 'package:lakeshore/screens/edit_form/edit_form_binding.dart';
 import 'package:lakeshore/screens/edit_form/edit_form_view.dart';
+import 'package:lakeshore/screens/invoice_download/invoice_binding.dart';
+import 'package:lakeshore/screens/invoice_download/my_invoice_view.dart';
 import 'package:lakeshore/screens/leave_request/leave_request_binding.dart';
 import 'package:lakeshore/screens/leave_request/leave_request_view.dart';
 import 'package:lakeshore/screens/login/login_binding.dart';
@@ -36,6 +38,8 @@ class Routes {
   static const editFormViewPage = '/editformviewpage';
   static const profileImageViewPage = '/profileimageviewpage';
   static const myAttendViewPage = '/myattendviewpage';
+  static const myInvoiceViewPage = '/myinvoiceviewpage';
+
   static final routes = [
     GetPage(
       name: splash,
@@ -81,11 +85,11 @@ class Routes {
       name: editViewPage,
       page: () => const EditView(),
     ),
-    GetPage(
-      binding: EditFormViewBindings(),
-      name: editFormViewPage,
-      page: () => const EditFormView(),
-    ),
+    // GetPage(
+    //   binding: EditFormViewBindings(),
+    //   name: editFormViewPage,
+    //   page: () => const EditFormView(),
+    // ),
     GetPage(
       binding: ProfileImageViewBindings(),
       name: profileImageViewPage,
@@ -95,6 +99,11 @@ class Routes {
       binding: MyAttendViewBindings(),
       name: myAttendViewPage,
       page: () => MyAttendView(),
+    ),
+    GetPage(
+      binding: MyInvoiceViewBindings(),
+      name: myInvoiceViewPage,
+      page: () => MyInvoiceView(),
     ),
   ];
 }

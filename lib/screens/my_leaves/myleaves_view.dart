@@ -15,28 +15,29 @@ import '../../utils/my_utils.dart';
 import 'myleaves_controller.dart';
 
 class MyLeavesdView extends GetView<MyLeavesController> {
-  const MyLeavesdView({Key? key,}) :
+  const MyLeavesdView({
+    Key? key,
+  }) : super(key: key);
 
-        super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         MyUtils.hideKeyboard();
       },
-
       child: Scaffold(
         body: Stack(
           children: [
-          //  BackGround(),
+            //  BackGround(),
             Column(
               children: [
                 DashContainer(
                   height: Get.height * 0.33,
                   child: Stack(children: [
+                    Image.asset(AssetHelper.loginImage),
+                    Stack(children: [
                       Image.asset(AssetHelper.loginImage),
-                  Stack(children: [
-                      Image.asset(AssetHelper.loginImage), Column(
+                      Column(
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 20, top: 50),
@@ -102,7 +103,8 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                             padding: const EdgeInsets.only(left: 20, right: 10),
                             child: Container(
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Image.asset(AssetHelper.briefcase),
                                   SizedBox(width: Get.width * 0.02),
@@ -186,7 +188,32 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                         ],
                       ),
                     ]),
-                ]  ),
+                  ]),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Container(
+                      height: 30,
+                      width: 100,
+                      color: Colors.green[200],
+                      child: Center(child: Text("Pending")),
+                    ),
+                    Spacer(),
+                    Container(
+                      height: 30,
+                      width: 100,
+                      color: Colors.green[200],
+                      child: Center(child: Text("Approved")),
+                    ),
+                    Spacer(),
+                    Container(
+                      height: 30,
+                      width: 100,
+                      color: Colors.green[200],
+                      child: Center(child: Text("Cancelled")),
+                    ),
+                  ],
                 ),
                 Expanded(
                   child: RefreshIndicator(
@@ -200,199 +227,378 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                         overscroll.disallowIndicator();
                         return true;
                       },
-                      child:
-                      Obx(() => controller.status.value == true
+                     child:  Obx(() => controller.status.value == true
                           ?
                           GetX<MyLeavesController>(
                             builder: (controller) {
                               return
-                                ListView.builder(
-                                  itemCount: controller.myLeaves.length,
-                                  itemBuilder: (BuildContext context,
-                                      int index) {
-                                    return RequestContainer(
-                                        width: Get.width * 0.9,
-                                        height: Get.height * 0.25,
-                                        child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 20, right: 20),
-                                            child: Column(
-                                                crossAxisAlignment:
+                      ListView.builder(
+                          itemCount: 1,
+                          //controller.myLeaves.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return  Column(
+                              children: [
+                                RequestContainer(
+                                    width: Get.width * 0.9,
+                                    height: Get.height * 0.23,
+                                    child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 20),
+                                        child: Column(
+                                            crossAxisAlignment:
                                                 CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                    children: [
+                                                  Text(
+                                                    // Get.arguments[ "reason"],
+                                                    "Going for a trip",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(
+                                                        top: 5),
+                                                    child: SizedBox(
+                                                      width: 130,
+                                                      child: ElevatedButton(
+                                                        style: ElevatedButton.styleFrom(
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                10)),
+                                                            backgroundColor:
+                                                                Colors.orange[100],
+                                                            foregroundColor:
+                                                                Colors.orange),
+                                                        onPressed: () {},
+                                                        child: Wrap(
+                                                          children: <Widget>[
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(AssetHelper.clock, color: Colors.orange[500],),
 
-                                                      Text(
-                                                        // Get.arguments[ "reason"],
-                                                        "Going for a trip",
-                                                        style: TextStyle(
-                                                            fontSize: 15),
-                                                      ),
-
-
-                                                      Padding(
-                                                        padding:
-                                                        const EdgeInsets.only(
-                                                            top: 5),
-                                                        child: ElevatedButton(
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                      10)),
-                                                              backgroundColor:
-                                                              Colors.orange[
-                                                              100],
-                                                              foregroundColor:
-                                                              Colors.orange),
-                                                          onPressed: () {},
-                                                          child: Wrap(
-                                                            children: <Widget>[
-                                                              Icon(
-                                                                Icons
-                                                                    .lock_clock,
-                                                                color: Colors
-                                                                    .orangeAccent,
-                                                                size: 24.0,
-                                                              ),
-                                                              SizedBox(
-                                                                width: Get
-                                                                    .width *
-                                                                    0.02,
-                                                              ),
-                                                              Text("Pending",
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                      20)),
-                                                            ],
-                                                          ),
+                                                            SizedBox(
+                                                              width: Get.width * 0.02,
+                                                            ),
+                                                            Text("Pending",
+                                                                style: TextStyle(
+                                                                    fontSize: 16)), ],
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
-                                                    ],
+                                                    ),
                                                   ),
-                                                  Text(
-                                                    Get.arguments["LeaveType"],
-                                                    style: TextStyle(
-                                                        color: Colors.grey),
-                                                  ),
-
+                                                ],
+                                              ),
+                                              Text(
+                                                'Most',
+                                                //  Get.arguments["LeaveType"],
+                                                style:
+                                                    TextStyle(color: Colors.grey),
+                                              ),
+                                              SizedBox(
+                                                height: Get.height * 0.01,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Image.asset(AssetHelper.calender),
                                                   SizedBox(
-                                                    height: Get.height * 0.01,
+                                                    width: Get.width * 0.03,
                                                   ),
-                                                  Row(
-                                                    children: [
-                                                      Image.asset(
-                                                          AssetHelper.calender),
-                                                      SizedBox(
-                                                        width: Get.width * 0.03,
+                                                  Row(children: [
+                                                    Text('Leave from : ',
+                                                        style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 14,
+                                                        )),
+                                                    Text(
+                                                        // Get
+                                                        //     .arguments[ "StartDate"],
+                                                        'Dec 21, 2022',
+                                                        style: const TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight.w500)),
+                                                    Text(" - "),
+                                                    Text('Dec 21, 2022',
+                                                        // Get
+                                                        //     .arguments[ "EndDate"],
+                                                        style: const TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight.w500)),
+                                                  ]),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: Get.height * 0.02,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    height: Get.height * 0.07,
+                                                    width: Get.width * 0.5,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.only(bottom: 5),
+                                                      child: SingleChildScrollView(
+                                                        child: Text(
+                                                          "Most mobile and web applications have buttons that allow users to "
+                                                              "press to interact. In Flutter, you can use"
+                                                              "press to interact. In Flutter, you can use"
+                                                             ,
+                                                          //Get.arguments[ "Reason"],                                                              maxLines: 100,
+                                                          // overflow:
+                                                          //     TextOverflow.ellipsis,
+                                                          style: TextStyle(
+                                                              color: Colors.grey,
+                                                              fontSize: 11,
+                                                              fontStyle:
+                                                                  FontStyle.italic),
+                                                        ),
                                                       ),
-                                                      Row(
-                                                          children: [
-                                                            Text(
-                                                                'Leave from : ',
-                                                                style: TextStyle(
-                                                                  color:
-                                                                  Colors.grey,
-                                                                  fontSize: 14,
-                                                                )),
-                                                            Text(
-                                                                Get
-                                                                    .arguments[ "StartDate"],
-                                                                //  'Dec 21, 2022 - ',
-                                                                style: const TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontSize: 15,
-                                                                    fontWeight:
-                                                                    FontWeight
-                                                                        .w500)),
-                                                            Text(" - "),
-                                                            Text(
-                                                                Get
-                                                                    .arguments[ "EndDate"],
-                                                                style: const TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontSize: 15,
-                                                                    fontWeight:
-                                                                    FontWeight
-                                                                        .w500)),
-                                                          ]),
-                                                    ],
+                                                    ),
                                                   ),
-                                                  SizedBox(
-                                                    height: Get.height * 0.03,
+                                                  IconButton(
+                                                      onPressed: () {
+                                                        Get.offNamed(Routes.leaveRequestPage);
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.edit,
+                                                        color: Colors.blue,
+                                                        size: 18,
+                                                      )),
+
+                                                     IconButton(
+                                                      onPressed: () {
+                                                        // controller
+                                                        //     .removeDecsription();
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.delete_outline,
+                                                        color: Colors.blue,
+                                                      ),
+                                                    ),
+
+                                                ],
+                                              ),
+
+                                            ]))),
+                                RequestContainer(
+                                    width: Get.width * 0.9,
+                                    height: Get.height * 0.15,
+                                    child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 20),
+                                        child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    // Get.arguments[ "reason"],
+                                                    "Going for a trip",
+                                                    style: TextStyle(fontSize: 15),
                                                   ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                    children: [
-                                                      Container(
-                                                          height:
-                                                          Get.height * 0.05,
-                                                          width: Get.width *
-                                                              0.5,
-                                                          child:
-                                                          SingleChildScrollView(
-                                                            child: Text(
-                                                              "cvgbcbcb",
-                                                              //Get.arguments[ "Reason"],                                                              maxLines: 100,
-                                                              overflow:
-                                                              TextOverflow
-                                                                  .ellipsis,
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(
+                                                        top: 5),
+                                                    child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                  10)),
+                                                          backgroundColor:
+                                                          Colors.green[100],
+                                                          foregroundColor:
+                                                          Colors.orange),
+                                                      onPressed: () {},
+                                                      child: Wrap(
+                                                        children: <Widget>[
+                                                          Row(
+                                                            children: [
+                                                              Image.asset(AssetHelper.clock, color: Colors.green),
+
+                                                          SizedBox(
+                                                            width: Get.width * 0.02,
+                                                          ),
+                                                          Text("Approved",
                                                               style: TextStyle(
-                                                                  color:
-                                                                  Colors.grey,
-                                                                  fontSize: 11,
-                                                                  fontStyle:
-                                                                  FontStyle
-                                                                      .italic),
-                                                            ),
-                                                          )),
-                                                      Row(
-                                                        //mainAxisAlignment: MainAxisAlignment.start,
-                                                        children: [
-                                                          IconButton(
-                                                              onPressed: () {},
-                                                              icon: Icon(
-                                                                Icons.edit,
-                                                                color:
-                                                                Colors.blue,
-                                                                size: 18,
-                                                              )),
-                                                          IconButton(
-                                                            onPressed: () {
-                                                              // controller
-                                                              //     .removeDecsription();
-                                                            },
-                                                            icon: const Icon(
-                                                              Icons
-                                                                  .delete_outline,
-                                                              color: Colors
-                                                                  .blue,
-                                                            ),
-                                                          )
+                                                                  fontSize: 16,color:
+                                                              Colors.green, )), ],
+                                                          ),
                                                         ],
-                                                      )
-                                                    ],
+                                                      ),
+                                                    ),
                                                   ),
-                                                ])));
-                                  }
-                                  );
-                            }
-                            ) :
-                          Center(child: RoundedLoader()),
-                        ),
-                      ),
+                                                ],
+                                              ),
+                                              Text(
+                                                'fhgcfhd',
+                                                //  Get.arguments["LeaveType"],
+                                                style:
+                                                TextStyle(color: Colors.grey),
+                                              ),
+                                              SizedBox(
+                                                height: Get.height * 0.01,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Image.asset(AssetHelper.calender),
+                                                  SizedBox(
+                                                    width: Get.width * 0.03,
+                                                  ),
+                                                  Row(children: [
+                                                    Text('Leave from : ',
+                                                        style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 14,
+                                                        )),
+                                                    Text(
+                                                      // Get
+                                                      //     .arguments[ "StartDate"],
+                                                        'Dec 21, 2022',
+                                                        style: const TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                            FontWeight.w500)),
+                                                    Text(" - "),
+                                                    Text('Dec 21, 2022',
+                                                        // Get
+                                                        //     .arguments[ "EndDate"],
+                                                        style: const TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                            FontWeight.w500)),
+                                                  ]),
+                                                ],
+                                              ),
+                                            ]))),
+                                RequestContainer(
+                                    width: Get.width * 0.9,
+                                    height: Get.height * 0.15,
+                                    child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 20),
+                                        child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    // Get.arguments[ "reason"],
+                                                    "Going for a trip",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(
+                                                        top: 5),
+                                                    child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                  10)),
+                                                          backgroundColor:
+                                                          Colors.red[100],
+                                                          foregroundColor:
+                                                          Colors.orange),
+                                                      onPressed: () {},
+                                                      child: Wrap(
+                                                        children: <Widget>[
+                                                          Row(
+                                                            children: [
+                                                              Image.asset(AssetHelper.clock, color: Colors.red),
+                                                              SizedBox(
+                                                            width: Get.width * 0.02,
+                                                          ),
+                                                          Text("Cancelled",
+                                                              style: TextStyle(
+                                                                fontSize: 16,color:
+                                                              Colors.red, )), ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Text(
+                                                'fhgcfhd',
+                                                //  Get.arguments["LeaveType"],
+                                                style:
+                                                TextStyle(color: Colors.grey),
+                                              ),
+                                              SizedBox(
+                                                height: Get.height * 0.01,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Image.asset(AssetHelper.calender),
+                                                  SizedBox(
+                                                    width: Get.width * 0.03,
+                                                  ),
+                                                  Row(children: [
+                                                    Text('Leave from : ',
+                                                        style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 14,
+                                                        )),
+                                                    Text(
+                                                      // Get
+                                                      //     .arguments[ "StartDate"],
+                                                        'Dec 21, 2022',
+                                                        style: const TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                            FontWeight.w500)),
+                                                    Text(" - "),
+                                                    Text('Dec 21, 2022',
+                                                        // Get
+                                                        //     .arguments[ "EndDate"],
+                                                        style: const TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                            FontWeight.w500)),
+                                                  ]),
+                                                ],
+                                              ),
+                                            ]))),
+                              ],
+                            );
+
+                         }
+                                    );
+                              }
+                              ) :
+                            Center(child: RoundedLoader()),
+                          ),
                     ),
                   ),
+                ),
               ],
             ),
           ],

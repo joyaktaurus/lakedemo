@@ -3,33 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:lakeshore/components/rounded_loader.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyCalenderPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyCalenderPageState createState() => _MyCalenderPageState();
 }
 
 late Map<DateTime, List<Appointment>> _dataCollection;
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyCalenderPageState extends State<MyCalenderPage> {
   late var _calendarDataSource;
 
   @override
@@ -38,42 +20,46 @@ class _MyHomePageState extends State<MyHomePage> {
     _calendarDataSource = MeetingDataSource(<Appointment>[]);
     super.initState();
   }
-  Color _cellBorderColor = Colors.black;
+  Color _cellBorderColor = Colors.blueAccent;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 200,bottom: 100),
-        child: SfCalendar(
-        //  monthCellBuilder: monthCellBuilder,
-          cellEndPadding: 15,
-          showDatePickerButton: true,
-          showNavigationArrow: true,
-          cellBorderColor: _cellBorderColor,
-          view: CalendarView.month,
-          monthViewSettings: MonthViewSettings(
-           // agendaItemHeight: 500,
-            showTrailingAndLeadingDates: false,
-              appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
-          ),
-          dataSource: _calendarDataSource,
-          loadMoreWidgetBuilder:
-              (BuildContext context, LoadMoreCallback loadMoreAppointments) {
-            return FutureBuilder(
-              future: loadMoreAppointments(),
-              builder: (context, snapShot) {
-                return Container(
-                  alignment: Alignment.center,
-                  child: RoundedLoader(),
-                  // CircularProgressIndicator(
-                  //   valueColor: AlwaysStoppedAnimation(Colors.blue),
-                  // ),
-                );
-              },
-            );
-          },
+      body: SfCalendar(
+        headerStyle: CalendarHeaderStyle(
+            textStyle: TextStyle(color: Color(0xFFcc0066), fontSize: 20),
+            textAlign: TextAlign.center,
+            backgroundColor: Colors.blue[100]),
+        viewHeaderHeight: 40,
+        cellEndPadding: 15,
+        showDatePickerButton: true,
+        showNavigationArrow: true,
+        cellBorderColor: _cellBorderColor,
+        view: CalendarView.month,
+        headerHeight: 50,
+        todayHighlightColor: Color(0xFFcc0066),
+        monthViewSettings: MonthViewSettings(
+          dayFormat: 'EEE',
+         // agendaItemHeight: 500,
+          showTrailingAndLeadingDates: false,
+            appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
         ),
+        dataSource: _calendarDataSource,
+        loadMoreWidgetBuilder:
+            (BuildContext context, LoadMoreCallback loadMoreAppointments) {
+          return FutureBuilder(
+            future: loadMoreAppointments(),
+            builder: (context, snapShot) {
+              return Container(
+                alignment: Alignment.center,
+                child: RoundedLoader(),
+                // CircularProgressIndicator(
+                //   valueColor: AlwaysStoppedAnimation(Colors.blue),
+                // ),
+              );
+            },
+          );
+        },
       ),
     );
   }

@@ -90,11 +90,11 @@ class LoginView extends GetView<LoginController> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 500),
+              padding: const EdgeInsets.only(top: 510),
               child: SingleChildScrollView(
                 child: Column(children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 40, right: 40),
+                    padding: const EdgeInsets.only(left: 20, right: 40),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -140,7 +140,7 @@ class LoginView extends GetView<LoginController> {
                               //  Get.toNamed(Routes.resetPassPage);
                               // }
                               //
-                                Get.offNamed(Routes.dashBoardPage);
+                               Get.offNamed(Routes.dashBoardPage);
                             },
                             isEnabled: true,
                             padding: const EdgeInsets.all(30),

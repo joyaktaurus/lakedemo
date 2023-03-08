@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:lakeshore/components/request_container.dart';
-import 'package:lakeshore/models/leave_request_model.dart';
 import 'package:lakeshore/screens/my_leaves/myleaves_view.dart';
-import 'package:toggle_switch/toggle_switch.dart';
-
 import '../../components/app_buttons.dart';
 import '../../components/app_dropdown.dart';
-import '../../components/background.dart';
+import '../../components/app_togg_days.dart';
 import '../../components/dash_container.dart';
 import '../../my_theme.dart';
 import '../../utils/asset_helper.dart';
@@ -131,7 +127,7 @@ final LeaveRequestController leaveRequestController = Get.put(LeaveRequestContro
                                       (String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
-                                      child: Text(value),
+                                      child: Text(value, style: TextStyle(fontWeight: FontWeight.normal),),
                                     );
                                   }).toList(),
                               ListValue: controller.dropdownText.value),
@@ -190,59 +186,10 @@ final LeaveRequestController leaveRequestController = Get.put(LeaveRequestContro
                           ],
                         ),
                         FittedBox(
-                          child: RequestContainer(
-                            width: Get.width * 0.91,
-                            height: Get.height * 0.07,
-                            child: ToggleSwitch(
-                              radiusStyle: true,
-                              minWidth: 185,
-                              minHeight: 60,
-                              cornerRadius: 15,
-                              fontSize: 16,
-                              activeBgColors: [
-                                [Colors.blue],
-                                [Colors.blue],
-                              ],
-                              activeFgColor: Colors.white,
-                              inactiveBgColor: Colors.white,
-                              inactiveFgColor: Colors.blue,
-                              totalSwitches: 2,
-                              labels: ['Full Day', 'Half Day'],
-                              onToggle: (index) {
-                                print('Selected item Position: $index');
-                              },
-                            ),
-                          ),
+                          child:
+                          ToggleDays(),
                         ),
-                        // Obx(
-                        //   () => RequestContainer(
-                        //     width: Get.width * 0.91,
-                        //     height: Get.height * 0.07,
-                        //     child: ToggleButtons(
-                        //       direction: Axis.horizontal,
-                        //       onPressed: (int index) {
-                        //         // The button that is tapped is set to true, and the others to false.
-                        //         for (int i = 0;
-                        //             i < controller.Selected.length;
-                        //             i++) {
-                        //           controller.Selected[i] = i == index;
-                        //         }
-                        //       },
-                        //       borderRadius: BorderRadius.circular(15),
-                        //       selectedBorderColor: Colors.blue,
-                        //       selectedColor: Colors.white,
-                        //       fillColor: Colors.blue,
-                        //       color: Colors.blue,
-                        //       borderColor: Colors.transparent,
-                        //       constraints: BoxConstraints(
-                        //         minHeight: 60,
-                        //         minWidth: 184,
-                        //       ),
-                        //       isSelected: controller.Selected,
-                        //       children: controller.FullDayHalf,
-                        //     ),
-                        //   ),
-                        // ),
+
                         Obx(
                               () => Padding(
                             padding: const EdgeInsets.only(
@@ -256,7 +203,7 @@ final LeaveRequestController leaveRequestController = Get.put(LeaveRequestContro
                                       (String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
-                                      child: Text(value),
+                                      child: Text(value, style: TextStyle(fontWeight: FontWeight.normal),),
                                     );
                                   }).toList(),
                               FunctioOnchanged: (String? value) {
@@ -319,7 +266,7 @@ final LeaveRequestController leaveRequestController = Get.put(LeaveRequestContro
                                  "StartDate" : controller.selectedDate.value,
                                  "EndDate": controller.selecteenddDate.value
                                      .toString(),
-                                // "Reason" : controller.reasonCtrl
+                                "Reason" : controller.resnCtrl.value
 
                                }
                           );

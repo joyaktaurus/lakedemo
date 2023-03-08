@@ -12,6 +12,7 @@ class MAButton extends StatelessWidget {
   final double clipBehavior;
   final double radius;
 
+
   const MAButton({
     Key? key,
     required this.text,
@@ -22,8 +23,9 @@ class MAButton extends StatelessWidget {
     required this.width,
     required this.clipBehavior,
     required this.radius,
-  }) : super(key: key);
 
+  }) : super(key: key);
+  //var icon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,12 +43,17 @@ class MAButton extends StatelessWidget {
                   : MyTheme.primaryColor1,
               borderRadius: const BorderRadius.all(Radius.circular(5.0)),
             ),
-            child: Center(
-              child: Text(
-                text,
-                style:
-                    MyTheme.regularTextStyle(color: Colors.white, textSize: 18),
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              //  Icon(icon, color: Colors.white,),
+                SizedBox(width: 5,),
+                Text(
+                  text,
+                  style:
+                      MyTheme.regularTextStyle(color: Colors.white, textSize: 18),
+                ),
+              ],
             ),
           ),
         ),
