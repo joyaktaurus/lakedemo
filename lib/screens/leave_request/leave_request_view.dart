@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lakeshore/components/request_container.dart';
 import 'package:lakeshore/screens/my_leaves/myleaves_view.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 import '../../components/app_buttons.dart';
 import '../../components/app_dropdown.dart';
 import '../../components/app_togg_days.dart';
@@ -117,8 +118,8 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                       children: [
                         Obx(
                               () => dropDownBox(
-
-                              FunctioOnchanged: (String? value) {
+                                controller: controller.ltypeController,
+                                  FunctioOnchanged: (String? value) {
                                 // This is called when the user selects an item.
                                 controller.dropdownText.value = value!;
                               },
@@ -186,8 +187,29 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                           ],
                         ),
                         FittedBox(
-                          child:
-                          ToggleDays(),
+                          child: RequestContainer(
+                            width: Get.width * 0.91,
+                            height: Get.height * 0.07,
+                            child: ToggleSwitch(
+                              radiusStyle: true,
+                              minWidth: 185,
+                              minHeight: 60,
+                              cornerRadius: 15,
+                              fontSize: 16,
+                              activeBgColors: [
+                                [Colors.blue],
+                                [Colors.blue],
+                              ],
+                              activeFgColor: Colors.white,
+                              inactiveBgColor: Colors.white,
+                              inactiveFgColor: Colors.blue,
+                              totalSwitches: 2,
+                              labels: ['Full Day', 'Half Day'],
+                              onToggle: (index) {
+                                print('Selected item Position: $index');
+                              },
+                            ),
+                          ),
                         ),
 
                         Obx(
@@ -197,6 +219,7 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                               right: 0,
                             ),
                             child: dropDownBox(
+                              controller: controller.dheadController,
                               ListValue: controller.departmentType.value,
                               ListItem: controller.department
                                   .map<DropdownMenuItem<String>>(
@@ -261,14 +284,14 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
 
                           //  myLeavesController.
                           Get.to(MyLeavesdView(),
-                              arguments: {
-                                "LeaveType" : controller.dropdownText.value,
-                                "StartDate" : controller.selectedDate.value,
-                                "EndDate": controller.selecteenddDate.value
-                                    .toString(),
-                                "Reason" : controller.resnCtrl.value
-
-                              }
+                              // arguments: {
+                              //   "LeaveType" : controller.dropdownText.value,
+                              //   "StartDate" : controller.selectedDate.value,
+                              //   "EndDate": controller.selecteenddDate.value
+                              //       .toString(),
+                              //   "Reason" : controller.resnCtrl.value
+                              //
+                              // }
                           );
                         },
                         isEnabled: true,

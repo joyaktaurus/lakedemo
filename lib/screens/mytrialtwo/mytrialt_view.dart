@@ -27,6 +27,7 @@ class MyTrialTwo extends GetView<MyTwoController> {
                            Text(person.name),
                            Text(person.address),
                             Text(person.drop),
+                            Text(person.toggles),
 
                        ] );
                       }),

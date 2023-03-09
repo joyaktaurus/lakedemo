@@ -61,21 +61,22 @@ class MyInvoiceView extends GetView<MyInvoiceViewController> {
                       return Future.delayed(Duration(seconds: 1));
                     },
                     child: Column(children: [
-                      Obx(
-                        () => dropDownBox(
-                            FunctioOnchanged: (String? value) {
-                              // This is called when the user selects an item.
-                              controller.dropdownText.value = value!;
-                            },
-                            ListItem: controller.df
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value, style: TextStyle(fontWeight: FontWeight.normal),),
-                              );
-                            }).toList(),
-                            ListValue: controller.dropdownText.value),
-                      ),
+                      // Obx(
+                      //   () => dropDownBox(
+                      //
+                      //       FunctioOnchanged: (String? value) {
+                      //         // This is called when the user selects an item.
+                      //         controller.dropdownText.value = value!;
+                      //       },
+                      //       ListItem: controller.df
+                      //           .map<DropdownMenuItem<String>>((String value) {
+                      //         return DropdownMenuItem<String>(
+                      //           value: value,
+                      //           child: Text(value, style: TextStyle(fontWeight: FontWeight.normal),),
+                      //         );
+                      //       }).toList(),
+                      //       ListValue: controller.dropdownText.value),
+                      // ),
                       SizedBox(height: Get.height * 0.1),
                       MAButton(
                       //  icon: Icons.arrow_downward_outlined,

@@ -28,11 +28,11 @@ class LeaveRequestController extends GetxController {
   ///////////////////////////
   // final reasonCtrl = TextEditingController;
 
-  final ltypeController = TextEditingController();
+  final TextEditingController ltypeController = TextEditingController();
   final sdateController = TextEditingController();
   final edateController = TextEditingController();
   final ldayController = TextEditingController();
-  final dheadController = TextEditingController();
+  final TextEditingController dheadController = TextEditingController();
   final yreasonController = TextEditingController();
 
   void submit() {

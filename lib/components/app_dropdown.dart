@@ -6,15 +6,17 @@ import 'package:lakeshore/components/request_container.dart';
 Widget dropDownBox({
   FunctioOnchanged,
   ListItem,
-  ListValue,
+  ListValue,   required TextEditingController controller,
 }) {
   return RequestContainer(
+
     width: Get.width * 0.9,
     height: Get.height * 0.07,
     child: Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
+
             value: ListValue,
             //controller.dropdownText.value,
             icon: Icon(

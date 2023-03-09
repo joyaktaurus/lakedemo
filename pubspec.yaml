@@ -45,6 +45,7 @@ dependencies:
   table_calendar: ^3.0.8
   cell_calendar: ^0.7.0
   file_picker: ^5.2.5
+  toggle_switch: ^2.0.1
 
 
 

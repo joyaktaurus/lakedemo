@@ -8,13 +8,15 @@ class AnimatedToggle extends StatefulWidget {
   final Color backgroundColor;
   final Color buttonColor;
   final Color textColor;
+//  final TextEditingController textController;
 
   AnimatedToggle({
     required this.values,
     required this.onToggleCallback,
     this.backgroundColor = Colors.blue,
     this.buttonColor = Colors.blue,
-    this.textColor = Colors.blue
+    this.textColor = Colors.blue,
+   // required this.textController
   });
   @override
   _AnimatedToggleState createState() => _AnimatedToggleState();
