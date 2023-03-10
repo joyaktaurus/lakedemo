@@ -6,19 +6,57 @@ import 'package:lakeshore/screens/my_leaves/myleaves_view.dart';
 
 import '../../models/leave_request_model.dart';
 
+
+
+class LeaveRequest {
+  //  late final int? id;
+  final String leaveType;
+  final String startDate;
+  final String endDate;
+  final String leaveDay;
+  final String deptHead;
+  final String yourReason;
+  final String status;
+
+  LeaveRequest({
+    //   required this.id,
+    required this.leaveType,
+    required this.startDate,
+    required this.endDate,
+    required this.leaveDay,
+    required this.deptHead,
+    required this.yourReason,
+    required this.status
+  });
+
+  factory LeaveRequest.fromJson(Map<String, dynamic> json) {
+    return LeaveRequest(
+      leaveType: json['leaveType'],
+      startDate: json['startDate'],
+      endDate: json['endDate'],
+      leaveDay: json['leaveDay'],
+      deptHead: json['deptHead'],
+      yourReason: json['yourReason'],
+      status: json['status'],
+    );
+  }
+}
+
 class LeaveRequestController extends GetxController {
 
   var lrequest = <LeaveRequest>[].obs;
 
   void addLeaves(String leaveType, String startDate, String endDate,
-      String leaveDay, String deptHead, String yourReason) {
+      String leaveDay, String deptHead, String yourReason, String status) {
     lrequest.add(LeaveRequest(
         leaveType: leaveType,
         startDate: startDate,
         endDate: endDate,
         leaveDay: leaveDay,
         deptHead: deptHead,
-        yourReason: yourReason));
+        yourReason: yourReason,
+        status: status
+    ));
   }
 
   List<LeaveRequest> getLeaves() {
@@ -34,18 +72,20 @@ class LeaveRequestController extends GetxController {
   final ldayController = TextEditingController();
   final TextEditingController dheadController = TextEditingController();
   final yreasonController = TextEditingController();
+  final statusController = TextEditingController();
 
   void submit() {
-    final leaveType = ltypeController.text;
-    final startDate = sdateController.text;
-    final endDate = edateController;
+    final leaveType = dropdownText.value;
+    final startDate = selectedDate.value;
+    final endDate = selecteenddDate.value;
     final leaveDay = ldayController.text;
     final deptHead = dheadController.text;
-    final yourReason = yreasonController;
+    final yourReason = yreasonController.text;
+    final status = statusController.text;
 
-    addLeaves( leaveType, startDate, endDate as String, leaveDay, deptHead, yourReason as String);
+    addLeaves( leaveType, startDate, endDate, leaveDay, deptHead, yourReason, status);
 
-    ltypeController.clear();
+    dropdownText.value = df.first;
     sdateController.clear();
     edateController.clear();
     ldayController.clear();
@@ -56,7 +96,7 @@ class LeaveRequestController extends GetxController {
   }
   /////////////////////////////////
   int id = 1;
-  final resnCtrl = TextEditingController();
+ // final resnCtrl = TextEditingController();
 
   RxString dropdownText = 'Leave Type '.obs as RxString;
   List<String> df = [

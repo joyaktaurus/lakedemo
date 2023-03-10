@@ -16,38 +16,26 @@ class MyTogButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: Get.width * 0.4,
+      height: Get.height * 0.07,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade200,
+              spreadRadius: 0.01,
+              //  blurRadius: 1,
+              offset: Offset(1, 1,), // Shadow position
+            ),
+            BoxShadow(
+              color: Colors.grey.shade300,
+              spreadRadius: 1,
+              blurRadius: 12,
+              //offset: Offset(10, 10,), // Shadow position
+            ),
+          ]),
       child: child,
-      // Row(
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   children: List.generate(
-      //     items.length,
-      //         (index) => InkWell(
-      //       onTap: onTap,
-      //       child:
-      //       //child,
-      //       Container(
-      //         width: 170,
-      //         height: 50,
-      //        alignment: Alignment.center,
-      //        // padding: EdgeInsets.symmetric(vertical: 8, horizontal: 30),
-      //         decoration: BoxDecoration(
-      //           borderRadius: BorderRadius.circular(15),
-      //           color: selectedIndex.value == index
-      //               ? Colors.blue
-      //               : Colors.grey[300],
-      //         ),
-      //         child: Text(
-      //           items[index],
-      //           style: TextStyle(
-      //             color: selectedIndex.value == index
-      //                 ? Colors.white
-      //                 : Colors.black,
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

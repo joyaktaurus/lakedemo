@@ -5,12 +5,14 @@ class RequestContainer extends StatelessWidget {
   final double width;
   final double height;
   final Widget child;
+  final TextEditingController? controller;
 
   const RequestContainer({
     Key? key,
     required this.width,
     required this.child,
     required this.height,
+    this.controller,
 
   }) : super(key: key);
 

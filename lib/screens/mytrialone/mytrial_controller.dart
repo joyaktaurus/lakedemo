@@ -1,4 +1,3 @@
-
 import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -53,8 +52,9 @@ class MyOneController extends GetxController {
   void onDepartmentChange(String? value) {
     selectedDepartment.value = value!;
   }
-    List<String> items = ['Full Day', 'Half Day'].obs;
-     RxInt selectedIndex =  0.obs as RxInt;
+  List<String> items = ['Full Day', 'Half Day'].obs;
+  RxInt selectedIndex =  0.obs as RxInt;
+  RxString Selected=''.obs;
   //
   // void selectIndex(int index) {
   //   selectedIndex.value = index;
@@ -65,7 +65,3 @@ class MyOneController extends GetxController {
     selectedIndex.value = index!;
   }
 }
-
-
-
-

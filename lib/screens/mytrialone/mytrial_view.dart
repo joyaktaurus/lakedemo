@@ -47,42 +47,45 @@ class MyTrialOne extends GetView<MyOneController> {
                     ),
                     SizedBox(height: 20),
                     Obx( () =>
-                      MyTogButton(
-                        controller: controller.toggleButtonController,
+                        MyTogButton(
+                          controller: controller.toggleButtonController,
                           items: controller.items,
                           child:
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                           // mainAxisAlignment: MainAxisAlignment.center,
                             children: List.generate(
                               controller.items.length,
                                   (index) => InkWell(
-                                onTap: () => controller.selectIndex(index),
-                                child:
-                                //child,
-                                Container(
-                                  width: 170,
-                                  height: 50,
+                                onTap: (){
+                                  controller.selectedIndex(index);
+                                  controller.toggleButtonController.text=controller.items[index];
+                                  },
+                                child: Container(
+                                  width: Get.width * 0.2,
+                                  height: Get.height * 0.07,
                                   alignment: Alignment.center,
                                   // padding: EdgeInsets.symmetric(vertical: 8, horizontal: 30),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
+                                    borderRadius: BorderRadius.circular(10),
                                     color: controller.selectedIndex.value == index
                                         ? Colors.blue
-                                        : Colors.grey[300],
+                                        : Colors.white,
                                   ),
-                                  child: Text(
-                                    controller.items[index],
-                                    style: TextStyle(
-                                      color: controller.selectedIndex.value == index
-                                          ? Colors.white
-                                          : Colors.black,
+                                  child: Center(
+                                    child: Text(
+                                      controller.items[index],
+                                      style: TextStyle(
+                                        color: controller.selectedIndex.value == index
+                                            ? Colors.white
+                                            : Colors.blue,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                      ),
+                        ),
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(onPressed: () => controller.submit(), child: Text('Submit')),
@@ -92,5 +95,3 @@ class MyTrialOne extends GetView<MyOneController> {
             ])));
   }
 }
-
-

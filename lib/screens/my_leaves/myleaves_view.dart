@@ -21,6 +21,8 @@ class MyLeavesdView extends GetView<MyLeavesController> {
 
   @override
   Widget build(BuildContext context) {
+    final LeaveRequestController ccontroller = Get.put(LeaveRequestController());
+   // final MyLeavesController controller = Get.put(MyLeavesController());
     return GestureDetector(
       onTap: () {
         MyUtils.hideKeyboard();
@@ -228,16 +230,12 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                         return true;
                       },
                       child:
-                      // Obx(() => controller.status.value == true
-                      //     ?
-                      // GetX<MyLeavesController>(
-                      //     builder: (controller) {
-                      //       return
-                              // ListView.builder(
-                              //     itemCount: 1,
-                              //     //controller.myLeaves.length,
-                              //     itemBuilder: (BuildContext context, int index) {
-                              //       return
+                      Obx(() =>
+                              ListView.builder(
+                                  itemCount: ccontroller.lrequest.length,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    final lperson = ccontroller.lrequest[index];
+                                    return
                               Column(
                                 children: [
                                   RequestContainer(
@@ -310,8 +308,8 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                     ),
                                                   ],
                                                 ),
-                                                Text(
-                                                  'Most',
+                                                Text(lperson.leaveType,
+                                                 //"ghjg",
                                                   //  Get.arguments["LeaveType"],
                                                   style:
                                                   TextStyle(color: Colors.grey),
@@ -332,10 +330,10 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                             color: Colors.grey,
                                                             fontSize: 14,
                                                           )),
-                                                      Text(
+                                                      Text(lperson.startDate,
                                                         // Get
                                                         //     .arguments[ "StartDate"],
-                                                          'Dec 21, 2022',
+                                                          //'Dec 21, 2022',
                                                           style: const TextStyle(
                                                               color: Colors
                                                                   .black,
@@ -343,7 +341,8 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                               fontWeight:
                                                               FontWeight.w500)),
                                                       Text(" - "),
-                                                      Text('Dec 21, 2022',
+                                                      Text(lperson.endDate,
+                                                          //'Dec 21, 2022',
                                                           // Get
                                                           //     .arguments[ "EndDate"],
                                                           style: const TextStyle(
@@ -370,14 +369,11 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                         padding: const EdgeInsets
                                                             .only(bottom: 5),
                                                         child: SingleChildScrollView(
-                                                          child: Text(
-                                                            "Most mobile and web applications have buttons that allow users to "
-                                                                "press to interact. In Flutter, you can use"
-                                                                "press to interact. In Flutter, you can use"
-                                                            ,
-                                                            //Get.arguments[ "Reason"],                                                              maxLines: 100,
-                                                            // overflow:
-                                                            //     TextOverflow.ellipsis,
+                                                          child: Text(lperson.yourReason,
+                                                            // "Most mobile and web applications have buttons that allow users to "
+                                                            //     "press to interact. In Flutter, you can use"
+                                                            //     "press to interact. In Flutter, you can use"
+
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .grey,
@@ -415,247 +411,245 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                 ),
 
                                               ]))),
-                                  RequestContainer(
-                                      width: Get.width * 0.9,
-                                      height: Get.height * 0.15,
-                                      child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 20, right: 20),
-                                          child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      // Get.arguments[ "reason"],
-                                                      "Going for a trip",
-                                                      style: TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                          .only(
-                                                          top: 5),
-                                                      child: ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                            shape:
-                                                            RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                    10)),
-                                                            backgroundColor:
-                                                            Colors.green[100],
-                                                            foregroundColor:
-                                                            Colors.orange),
-                                                        onPressed: () {},
-                                                        child: Wrap(
-                                                          children: <Widget>[
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(
-                                                                    AssetHelper
-                                                                        .clock,
-                                                                    color: Colors
-                                                                        .green),
-
-                                                                SizedBox(
-                                                                  width: Get
-                                                                      .width *
-                                                                      0.02,
-                                                                ),
-                                                                Text("Approved",
-                                                                    style: TextStyle(
-                                                                      fontSize: 16,
-                                                                      color:
-                                                                      Colors
-                                                                          .green,)),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Text(
-                                                  'fhgcfhd',
-                                                  //  Get.arguments["LeaveType"],
-                                                  style:
-                                                  TextStyle(color: Colors.grey),
-                                                ),
-                                                SizedBox(
-                                                  height: Get.height * 0.01,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Image.asset(
-                                                        AssetHelper.calender),
-                                                    SizedBox(
-                                                      width: Get.width * 0.03,
-                                                    ),
-                                                    Row(children: [
-                                                      Text('Leave from : ',
-                                                          style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 14,
-                                                          )),
-                                                      Text(
-                                                        // Get
-                                                        //     .arguments[ "StartDate"],
-                                                          'Dec 21, 2022',
-                                                          style: const TextStyle(
-                                                              color: Colors
-                                                                  .black,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                              FontWeight.w500)),
-                                                      Text(" - "),
-                                                      Text('Dec 21, 2022',
-                                                          // Get
-                                                          //     .arguments[ "EndDate"],
-                                                          style: const TextStyle(
-                                                              color: Colors
-                                                                  .black,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                              FontWeight.w500)),
-                                                    ]),
-                                                  ],
-                                                ),
-                                              ]))),
-                                  RequestContainer(
-                                      width: Get.width * 0.9,
-                                      height: Get.height * 0.15,
-                                      child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 20, right: 20),
-                                          child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      // Get.arguments[ "reason"],
-                                                      "Going for a trip",
-                                                      style: TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                          .only(
-                                                          top: 5),
-                                                      child: ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                            shape:
-                                                            RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                    10)),
-                                                            backgroundColor:
-                                                            Colors.red[100],
-                                                            foregroundColor:
-                                                            Colors.orange),
-                                                        onPressed: () {},
-                                                        child: Wrap(
-                                                          children: <Widget>[
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(
-                                                                    AssetHelper
-                                                                        .clock,
-                                                                    color: Colors
-                                                                        .red),
-                                                                SizedBox(
-                                                                  width: Get
-                                                                      .width *
-                                                                      0.02,
-                                                                ),
-                                                                Text(
-                                                                    "Cancelled",
-                                                                    style: TextStyle(
-                                                                      fontSize: 16,
-                                                                      color:
-                                                                      Colors
-                                                                          .red,)),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Text(
-                                                  'fhgcfhd',
-                                                  //  Get.arguments["LeaveType"],
-                                                  style:
-                                                  TextStyle(color: Colors.grey),
-                                                ),
-                                                SizedBox(
-                                                  height: Get.height * 0.01,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Image.asset(
-                                                        AssetHelper.calender),
-                                                    SizedBox(
-                                                      width: Get.width * 0.03,
-                                                    ),
-                                                    Row(children: [
-                                                      Text('Leave from : ',
-                                                          style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 14,
-                                                          )),
-                                                      Text(
-                                                        // Get
-                                                        //     .arguments[ "StartDate"],
-                                                          'Dec 21, 2022',
-                                                          style: const TextStyle(
-                                                              color: Colors
-                                                                  .black,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                              FontWeight.w500)),
-                                                      Text(" - "),
-                                                      Text('Dec 21, 2022',
-                                                          // Get
-                                                          //     .arguments[ "EndDate"],
-                                                          style: const TextStyle(
-                                                              color: Colors
-                                                                  .black,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                              FontWeight.w500)),
-                                                    ]),
-                                                  ],
-                                                ),
-                                              ]))),
+                                  // RequestContainer(
+                                  //     width: Get.width * 0.9,
+                                  //     height: Get.height * 0.15,
+                                  //     child: Padding(
+                                  //         padding: const EdgeInsets.only(
+                                  //             left: 20, right: 20),
+                                  //         child: Column(
+                                  //             crossAxisAlignment:
+                                  //             CrossAxisAlignment.start,
+                                  //             children: [
+                                  //               Row(
+                                  //                 mainAxisAlignment:
+                                  //                 MainAxisAlignment
+                                  //                     .spaceBetween,
+                                  //                 children: [
+                                  //                   Text(
+                                  //                     // Get.arguments[ "reason"],
+                                  //                     "Going for a trip",
+                                  //                     style: TextStyle(
+                                  //                         fontSize: 15),
+                                  //                   ),
+                                  //                   Padding(
+                                  //                     padding: const EdgeInsets
+                                  //                         .only(
+                                  //                         top: 5),
+                                  //                     child: ElevatedButton(
+                                  //                       style: ElevatedButton
+                                  //                           .styleFrom(
+                                  //                           shape:
+                                  //                           RoundedRectangleBorder(
+                                  //                               borderRadius:
+                                  //                               BorderRadius
+                                  //                                   .circular(
+                                  //                                   10)),
+                                  //                           backgroundColor:
+                                  //                           Colors.green[100],
+                                  //                           foregroundColor:
+                                  //                           Colors.orange),
+                                  //                       onPressed: () {},
+                                  //                       child: Wrap(
+                                  //                         children: <Widget>[
+                                  //                           Row(
+                                  //                             children: [
+                                  //                               Image.asset(
+                                  //                                   AssetHelper
+                                  //                                       .clock,
+                                  //                                   color: Colors
+                                  //                                       .green),
+                                  //
+                                  //                               SizedBox(
+                                  //                                 width: Get
+                                  //                                     .width *
+                                  //                                     0.02,
+                                  //                               ),
+                                  //                               Text("Approved",
+                                  //                                   style: TextStyle(
+                                  //                                     fontSize: 16,
+                                  //                                     color:
+                                  //                                     Colors
+                                  //                                         .green,)),
+                                  //                             ],
+                                  //                           ),
+                                  //                         ],
+                                  //                       ),
+                                  //                     ),
+                                  //                   ),
+                                  //                 ],
+                                  //               ),
+                                  //               Text(
+                                  //                 'fhgcfhd',
+                                  //                 //  Get.arguments["LeaveType"],
+                                  //                 style:
+                                  //                 TextStyle(color: Colors.grey),
+                                  //               ),
+                                  //               SizedBox(
+                                  //                 height: Get.height * 0.01,
+                                  //               ),
+                                  //               Row(
+                                  //                 children: [
+                                  //                   Image.asset(
+                                  //                       AssetHelper.calender),
+                                  //                   SizedBox(
+                                  //                     width: Get.width * 0.03,
+                                  //                   ),
+                                  //                   Row(children: [
+                                  //                     Text('Leave from : ',
+                                  //                         style: TextStyle(
+                                  //                           color: Colors.grey,
+                                  //                           fontSize: 14,
+                                  //                         )),
+                                  //                     Text(
+                                  //                       // Get
+                                  //                       //     .arguments[ "StartDate"],
+                                  //                         'Dec 21, 2022',
+                                  //                         style: const TextStyle(
+                                  //                             color: Colors
+                                  //                                 .black,
+                                  //                             fontSize: 13,
+                                  //                             fontWeight:
+                                  //                             FontWeight.w500)),
+                                  //                     Text(" - "),
+                                  //                     Text('Dec 21, 2022',
+                                  //                         // Get
+                                  //                         //     .arguments[ "EndDate"],
+                                  //                         style: const TextStyle(
+                                  //                             color: Colors
+                                  //                                 .black,
+                                  //                             fontSize: 13,
+                                  //                             fontWeight:
+                                  //                             FontWeight.w500)),
+                                  //                   ]),
+                                  //                 ],
+                                  //               ),
+                                  //             ]))),
+                                  // RequestContainer(
+                                  //     width: Get.width * 0.9,
+                                  //     height: Get.height * 0.15,
+                                  //     child: Padding(
+                                  //         padding: const EdgeInsets.only(
+                                  //             left: 20, right: 20),
+                                  //         child: Column(
+                                  //             crossAxisAlignment:
+                                  //             CrossAxisAlignment.start,
+                                  //             children: [
+                                  //               Row(
+                                  //                 mainAxisAlignment:
+                                  //                 MainAxisAlignment
+                                  //                     .spaceBetween,
+                                  //                 children: [
+                                  //                   Text(
+                                  //                     // Get.arguments[ "reason"],
+                                  //                     "Going for a trip",
+                                  //                     style: TextStyle(
+                                  //                         fontSize: 15),
+                                  //                   ),
+                                  //                   Padding(
+                                  //                     padding: const EdgeInsets
+                                  //                         .only(
+                                  //                         top: 5),
+                                  //                     child: ElevatedButton(
+                                  //                       style: ElevatedButton
+                                  //                           .styleFrom(
+                                  //                           shape:
+                                  //                           RoundedRectangleBorder(
+                                  //                               borderRadius:
+                                  //                               BorderRadius
+                                  //                                   .circular(
+                                  //                                   10)),
+                                  //                           backgroundColor:
+                                  //                           Colors.red[100],
+                                  //                           foregroundColor:
+                                  //                           Colors.orange),
+                                  //                       onPressed: () {},
+                                  //                       child: Wrap(
+                                  //                         children: <Widget>[
+                                  //                           Row(
+                                  //                             children: [
+                                  //                               Image.asset(
+                                  //                                   AssetHelper
+                                  //                                       .clock,
+                                  //                                   color: Colors
+                                  //                                       .red),
+                                  //                               SizedBox(
+                                  //                                 width: Get
+                                  //                                     .width *
+                                  //                                     0.02,
+                                  //                               ),
+                                  //                               Text(
+                                  //                                   "Cancelled",
+                                  //                                   style: TextStyle(
+                                  //                                     fontSize: 16,
+                                  //                                     color:
+                                  //                                     Colors
+                                  //                                         .red,)),
+                                  //                             ],
+                                  //                           ),
+                                  //                         ],
+                                  //                       ),
+                                  //                     ),
+                                  //                   ),
+                                  //                 ],
+                                  //               ),
+                                  //               Text(
+                                  //                 'fhgcfhd',
+                                  //                 //  Get.arguments["LeaveType"],
+                                  //                 style:
+                                  //                 TextStyle(color: Colors.grey),
+                                  //               ),
+                                  //               SizedBox(
+                                  //                 height: Get.height * 0.01,
+                                  //               ),
+                                  //               Row(
+                                  //                 children: [
+                                  //                   Image.asset(
+                                  //                       AssetHelper.calender),
+                                  //                   SizedBox(
+                                  //                     width: Get.width * 0.03,
+                                  //                   ),
+                                  //                   Row(children: [
+                                  //                     Text('Leave from : ',
+                                  //                         style: TextStyle(
+                                  //                           color: Colors.grey,
+                                  //                           fontSize: 14,
+                                  //                         )),
+                                  //                     Text(
+                                  //                       // Get
+                                  //                       //     .arguments[ "StartDate"],
+                                  //                         'Dec 21, 2022',
+                                  //                         style: const TextStyle(
+                                  //                             color: Colors
+                                  //                                 .black,
+                                  //                             fontSize: 13,
+                                  //                             fontWeight:
+                                  //                             FontWeight.w500)),
+                                  //                     Text(" - "),
+                                  //                     Text('Dec 21, 2022',
+                                  //                         // Get
+                                  //                         //     .arguments[ "EndDate"],
+                                  //                         style: const TextStyle(
+                                  //                             color: Colors
+                                  //                                 .black,
+                                  //                             fontSize: 13,
+                                  //                             fontWeight:
+                                  //                             FontWeight.w500)),
+                                  //                   ]),
+                                  //                 ],
+                                  //               ),
+                                  //             ]))),
                                 ],
-                              )
+                              );
 
-                            //     }
-                            // );
-                            //     }
-                            // ) :
-                            // Center(child: RoundedLoader()),
-                            // ),
-                          // ),
+                                }
+
+                            )
+                            ),
+                          ),
                   ),
                 ),
-                ) ],
+                 ],
             ),
           ],
         ),

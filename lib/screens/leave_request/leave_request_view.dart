@@ -117,7 +117,21 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                     child: Column(
                       children: [
                         Obx(
-                              () => dropDownBox(
+                              () =>
+                                  // dropDownBox(
+                                  //   controller: controller.departmentController,
+                                  //   ListValue: controller.selectedDepartment.value,
+                                  //   ListItem: controller.departmentt
+                                  //       .map<DropdownMenuItem<String>>(
+                                  //           (String value) {
+                                  //         return DropdownMenuItem<String>(
+                                  //           value: value,
+                                  //           child: Text(value, style: TextStyle(fontWeight: FontWeight.normal),),
+                                  //         );
+                                  //       }).toList(),
+                                  //   FunctioOnchanged: controller.onDepartmentChange,
+                                  // ),
+                                  dropDownBox(
                                 controller: controller.ltypeController,
                                   FunctioOnchanged: (String? value) {
                                 // This is called when the user selects an item.
@@ -138,6 +152,7 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                           children: [
                             FittedBox(
                               child: RequestContainer(
+                                controller: controller.sdateController,
                                 width: Get.width * 0.4,
                                 height: Get.height * 0.07,
                                 child: Row(
@@ -162,6 +177,7 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                             ),
                             FittedBox(
                               child: RequestContainer(
+                                controller: controller.edateController,
                                 width: Get.width * 0.4,
                                 height: Get.height * 0.07,
                                 child: Row(
@@ -188,6 +204,7 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                         ),
                         FittedBox(
                           child: RequestContainer(
+                            controller: controller.ldayController,
                             width: Get.width * 0.91,
                             height: Get.height * 0.07,
                             child: ToggleSwitch(
@@ -243,6 +260,7 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                             width: Get.width * 0.9,
                             height: Get.height * 0.13,
                             child: TextFormField(
+                              controller: controller.yreasonController,
                               maxLines: 100,
                               decoration: new InputDecoration(
                                 border: InputBorder.none,
@@ -282,8 +300,9 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                         text: 'Submit Request',
                         buttonPress: () {
 
+                          controller.submit();
                           //  myLeavesController.
-                          Get.to(MyLeavesdView(),
+                          // Get.to(MyLeavesdView(),
                               // arguments: {
                               //   "LeaveType" : controller.dropdownText.value,
                               //   "StartDate" : controller.selectedDate.value,
@@ -292,7 +311,6 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                               //   "Reason" : controller.resnCtrl.value
                               //
                               // }
-                          );
                         },
                         isEnabled: true,
                         padding: const EdgeInsets.only(bottom: 5),
