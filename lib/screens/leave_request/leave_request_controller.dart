@@ -4,12 +4,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lakeshore/screens/my_leaves/myleaves_view.dart';
 
-import '../../models/leave_request_model.dart';
-
-
 
 class LeaveRequest {
-  //  late final int? id;
+    // final int? id;
   final String leaveType;
   final String startDate;
   final String endDate;
@@ -26,7 +23,7 @@ class LeaveRequest {
     required this.leaveDay,
     required this.deptHead,
     required this.yourReason,
-    required this.status
+    this.status = "Pending"
   });
 
   factory LeaveRequest.fromJson(Map<String, dynamic> json) {
@@ -40,6 +37,15 @@ class LeaveRequest {
       status: json['status'],
     );
   }
+  Map<String, dynamic> toJson() => {
+    'leaveType': leaveType,
+    'startDate': startDate,
+    'endDate': endDate,
+    'leaveDay': leaveDay,
+    'deptHead': deptHead,
+    'yourReason': yourReason,
+    'status': status,
+  };
 }
 
 class LeaveRequestController extends GetxController {
@@ -81,7 +87,7 @@ class LeaveRequestController extends GetxController {
     final leaveDay = ldayController.text;
     final deptHead = dheadController.text;
     final yourReason = yreasonController.text;
-    final status = statusController.text;
+    final status = statuss.value;
 
     addLeaves( leaveType, startDate, endDate, leaveDay, deptHead, yourReason, status);
 
@@ -94,8 +100,13 @@ class LeaveRequestController extends GetxController {
 
     Get.to(MyLeavesdView());
   }
+
+  void deleteContainer() {
+    final newContainers = lrequest.where((c) => c.status != "Pending").toList();
+    lrequest.value = newContainers;
+  }
   /////////////////////////////////
-  int id = 1;
+ // int id = 1;
  // final resnCtrl = TextEditingController();
 
   RxString dropdownText = 'Leave Type '.obs as RxString;
@@ -105,6 +116,13 @@ class LeaveRequestController extends GetxController {
     'Sick Leave',
   ].obs;
   List<bool> Selected = <bool>[true, false].obs;
+
+  // var pending;
+  // List<bool> status = <bool>[true, false].obs;
+
+  var start;
+  List<bool> startEnable = <bool>[true, false].obs;
+
   List<Widget> fullDayHalf = <Widget>[Text('Full Day'), Text('Half Day')].obs;
   RxString departmentType = 'Department Head'.obs as RxString;
   List<String> department = [
@@ -113,6 +131,21 @@ class LeaveRequestController extends GetxController {
     'Icu care ',
     'Ward ',
   ].obs;
+
+  var statuss = 'pending'.obs;
+
+
+  // RxString statuss = 'Pending'.obs as RxString;
+
+  void updateStatus(String newStatus) {
+    statuss.value = newStatus;
+  }
+
+  // List<String> stats = [
+  //   'Pending',
+  //   'Approved',
+  //   'Cancelled',
+  // ].obs;
 
   // var selectedDate = DateTime.now().obs;
   Rx<String> selectedDate = 'Start Date'.obs;
@@ -125,45 +158,6 @@ class LeaveRequestController extends GetxController {
 
   var leaverequest = <LeaveRequest>[].obs;
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   //fetchRequest();
-  // }
-  //
-  // void fetchRequest() async {
-  //   await Future.delayed(Duration(seconds: 1));
-  //   var requestResponse = [
-  //     LeaveRequest(
-  //       id: 1,
-  //       leaveType: 'Casual Leave',
-  //       startDate: '11-02-2023',
-  //       endDate: '14-02-2023',
-  //       leaveDay: 'Full day',
-  //       deptHead: 'Ward',
-  //       yourReason: 'bnbvnb',
-  //     ),
-  //     LeaveRequest(
-  //       id: 2,
-  //       leaveType: 'Casual Leave',
-  //       startDate: '21-02-2023',
-  //       endDate: '14-03-2023',
-  //       leaveDay: 'Half day',
-  //       deptHead: 'Icu care',
-  //       yourReason: '4cvbb',
-  //     ),
-  //     LeaveRequest(
-  //       id: 3,
-  //       leaveType: 'Sick Leave',
-  //       startDate: '15-02-2023',
-  //       endDate: '24-02-2023',
-  //       leaveDay: 'Full day',
-  //       deptHead: 'Ward',
-  //       yourReason: 'cbhfghg4',
-  //     ),
-  //   ];
-  //   leaverequest.value = requestResponse;
-  // }
 
   @override
   void onReady() {
@@ -232,7 +226,4 @@ class LeaveRequestController extends GetxController {
     }
   }
 
-  Rx<String> textController = 'Reason'.obs as RxString;
-
-  RxString controllerText = ''.obs;
 }

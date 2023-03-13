@@ -282,8 +282,6 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                         ),
                       ],
                     ),
-
-
                   ),
                 ),
               ),
@@ -299,19 +297,8 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                       child: MAButton(
                         text: 'Submit Request',
                         buttonPress: () {
-
                           controller.submit();
-                          //  myLeavesController.
-                          // Get.to(MyLeavesdView(),
-                              // arguments: {
-                              //   "LeaveType" : controller.dropdownText.value,
-                              //   "StartDate" : controller.selectedDate.value,
-                              //   "EndDate": controller.selecteenddDate.value
-                              //       .toString(),
-                              //   "Reason" : controller.resnCtrl.value
-                              //
-                              // }
-                        },
+                          },
                         isEnabled: true,
                         padding: const EdgeInsets.only(bottom: 5),
                         height: Get.height * 0.07,

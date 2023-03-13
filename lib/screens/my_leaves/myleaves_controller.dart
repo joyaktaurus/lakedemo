@@ -6,6 +6,12 @@ import 'package:lakeshore/screens/leave_request/leave_request_controller.dart';
 
 
 class MyLeavesController extends GetxController {
+
+
+
+
+
+
  // final LeaveRequestController ccontroller = Get.find<LeaveRequestController>();
   // int idFromFirstController = Get.find<LeaveRequestController>().id;
 // final LeaveRequestController controllerll = Get.put(LeaveRequestController());

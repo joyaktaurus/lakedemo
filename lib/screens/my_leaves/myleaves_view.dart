@@ -194,26 +194,30 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                 ),
                 SizedBox(height: 10),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Container(
-                      height: 30,
-                      width: 100,
-                      color: Colors.green[200],
-                      child: Center(child: Text("Pending")),
+                    GestureDetector(
+                      onTap: () {
+                        ccontroller.updateStatus("Approved");
+                      },
+                      child: Container(
+                        height: 30,
+                        width: 100,
+                        color: Colors.green[200],
+                        child: Center(child: Text("Approved")),
+                      ),
                     ),
-                    Spacer(),
-                    Container(
-                      height: 30,
-                      width: 100,
-                      color: Colors.green[200],
-                      child: Center(child: Text("Approved")),
-                    ),
-                    Spacer(),
-                    Container(
-                      height: 30,
-                      width: 100,
-                      color: Colors.green[200],
-                      child: Center(child: Text("Cancelled")),
+                   SizedBox(width: 10),
+                    GestureDetector(
+                      onTap: () {
+                        ccontroller.updateStatus("Cancelled");
+                      },
+                      child: Container(
+                        height: 30,
+                        width: 100,
+                        color: Colors.green[200],
+                        child: Center(child: Text("Cancelled")),
+                      ),
                     ),
                   ],
                 ),
@@ -235,9 +239,9 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                   itemCount: ccontroller.lrequest.length,
                                   itemBuilder: (BuildContext context, int index) {
                                     final lperson = ccontroller.lrequest[index];
-                                    return
-                              Column(
+                                    return Column(
                                 children: [
+                                  // if(ccontroller.statuss == ccontroller.pending)true?
                                   RequestContainer(
                                       width: Get.width * 0.9,
                                       height: Get.height * 0.23,
@@ -264,7 +268,7 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                           .only(
                                                           top: 5),
                                                       child: SizedBox(
-                                                        width: 130,
+                                                        width: 132,
                                                         child: ElevatedButton(
                                                           style: ElevatedButton
                                                               .styleFrom(
@@ -295,10 +299,12 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                                         .width *
                                                                         0.02,
                                                                   ),
-                                                                  Text(
-                                                                      "Pending",
-                                                                      style: TextStyle(
-                                                                          fontSize: 16)),
+                                                                  Obx( () =>
+                                                                   Text(ccontroller.statuss.value,
+                                                                       // "Pending",
+                                                                        style: TextStyle(
+                                                                            fontSize: 16)),
+                                                                  ),
                                                                 ],
                                                               ),
                                                             ],
@@ -325,7 +331,8 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                       width: Get.width * 0.03,
                                                     ),
                                                     Row(children: [
-                                                      Text('Leave from : ',
+                                                      Text(
+                                                          'Leave from : ',
                                                           style: TextStyle(
                                                             color: Colors.grey,
                                                             fontSize: 14,
@@ -357,7 +364,8 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                 SizedBox(
                                                   height: Get.height * 0.02,
                                                 ),
-                                                Row(
+                                                if(ccontroller.statuss == "pending")
+                                                  Row(
                                                   mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
@@ -369,11 +377,11 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                         padding: const EdgeInsets
                                                             .only(bottom: 5),
                                                         child: SingleChildScrollView(
-                                                          child: Text(lperson.yourReason,
-                                                            // "Most mobile and web applications have buttons that allow users to "
-                                                            //     "press to interact. In Flutter, you can use"
-                                                            //     "press to interact. In Flutter, you can use"
-
+                                                          child:
+                                                         //  (ccontroller.startEnable.length)
+                                                         // ?
+                                                          Text(
+                                                            lperson.yourReason,
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .grey,
@@ -381,7 +389,15 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                                 fontStyle:
                                                                 FontStyle
                                                                     .italic),
-                                                          ),
+                                                          )
+                                                              // : Text("Reason for leave",
+                                                              // style: TextStyle(
+                                                              // color: Colors
+                                                              //     .grey,
+                                                              // fontSize: 11,
+                                                              // fontStyle:
+                                                              // FontStyle
+                                                              // .italic),)
                                                         ),
                                                       ),
                                                     ),
@@ -398,19 +414,18 @@ class MyLeavesdView extends GetView<MyLeavesController> {
 
                                                     IconButton(
                                                       onPressed: () {
-                                                        // controller
-                                                        //     .removeDecsription();
+                                                        ccontroller.deleteContainer();
                                                       },
                                                       icon: const Icon(
                                                         Icons.delete_outline,
                                                         color: Colors.blue,
                                                       ),
                                                     ),
-
                                                   ],
-                                                ),
-
-                                              ]))),
+                                                )
+                                              ]
+                                          )
+                                      )),
                                   // RequestContainer(
                                   //     width: Get.width * 0.9,
                                   //     height: Get.height * 0.15,

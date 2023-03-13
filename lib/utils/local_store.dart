@@ -7,6 +7,8 @@ abstract class LocalStore {
   static void setData(String key, dynamic value) =>
       GetStorage().write(key, value);
 
+
+
   static int? getInt(String key) => GetStorage().read(key);
 
   static String? getString(String key) => GetStorage().read(key);
