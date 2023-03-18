@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class RequestContainer extends StatelessWidget {
   final double width;
-  final double height;
+  final double? height;
   final Widget child;
   final TextEditingController? controller;
 
@@ -11,8 +11,8 @@ class RequestContainer extends StatelessWidget {
     Key? key,
     required this.width,
     required this.child,
-    required this.height,
     this.controller,
+    this.height,
 
   }) : super(key: key);
 

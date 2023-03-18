@@ -1,97 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:toggle_switch/toggle_switch.dart';
-import '../../components/app_dropdown.dart';
-import '../../components/my_tog_app.dart';
-import '../../components/request_container.dart';
+import 'package:lakeshore/screens/mytrialone/mytrial_view.dart';
 import '../../utils/my_utils.dart';
-import 'mytrial_controller.dart';
+import '../mytrialone/mytrial_controller.dart';
 
 
-class MyTrialOne extends GetView<MyOneController> {
-
+class MyTrialOne extends GetView<MyListController> {
+  final TextEditingController textEditingController = TextEditingController();
+  final TextEditingController msgEditingController = TextEditingController();
+  final TextEditingController adrsEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () {
-          MyUtils.hideKeyboard();
-        },
-        child: Scaffold(
-            body: Stack(children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    TextField(controller: controller.nameController, decoration: InputDecoration(labelText: 'Name')),
-                    TextField(controller: controller.addressController, decoration: InputDecoration(labelText: 'Address')),
-                    Obx(
-                          () => Padding(
-                        padding: const EdgeInsets.only(
-                          left: 0,
-                          right: 0,
-                        ),
-                        child: dropDownBox(
-                          controller: controller.departmentController,
-                          ListValue: controller.selectedDepartment.value,
-                          ListItem: controller.departmentt
-                              .map<DropdownMenuItem<String>>(
-                                  (String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value, style: TextStyle(fontWeight: FontWeight.normal),),
-                                );
-                              }).toList(),
-                          FunctioOnchanged: controller.onDepartmentChange,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Obx( () =>
-                        MyTogButton(
-                          controller: controller.toggleButtonController,
-                          items: controller.items,
-                          child:
-                          Row(
-                           // mainAxisAlignment: MainAxisAlignment.center,
-                            children: List.generate(
-                              controller.items.length,
-                                  (index) => InkWell(
-                                onTap: (){
-                                  controller.selectedIndex(index);
-                                  controller.toggleButtonController.text=controller.items[index];
-                                  },
-                                child: Container(
-                                  width: Get.width * 0.2,
-                                  height: Get.height * 0.07,
-                                  alignment: Alignment.center,
-                                  // padding: EdgeInsets.symmetric(vertical: 8, horizontal: 30),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: controller.selectedIndex.value == index
-                                        ? Colors.blue
-                                        : Colors.white,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      controller.items[index],
-                                      style: TextStyle(
-                                        color: controller.selectedIndex.value == index
-                                            ? Colors.white
-                                            : Colors.blue,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                    ),
-                    SizedBox(height: 20),
-                    ElevatedButton(onPressed: () => controller.submit(), child: Text('Submit')),
-                  ],
-                ),
-              ),
-            ])));
+    final MyOneController controllerr = Get.find();
+    return Scaffold(
+      body: Column(
+        children: [
+          TextField(
+            controller: controllerr.textEditingController,
+            decoration: InputDecoration(hintText: 'Enter item name'),
+          ),
+          TextField(
+            controller: controllerr.msgEditingController,
+            decoration: InputDecoration(hintText: 'Enter msg name'),
+          ),
+          TextField(
+            controller: controllerr.adrsEditingController,
+            decoration: InputDecoration(hintText: 'Enter adrs name'),
+          ),
+          TextButton(
+            child: Text('CANCEL'),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          ElevatedButton(
+            child: Text('ADD'),
+            onPressed: () {
+              controllerr.addToList();
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

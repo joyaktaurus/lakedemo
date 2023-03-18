@@ -133,14 +133,14 @@ class LoginView extends GetView<LoginController> {
                               // .............................
                               // final isValidate = controller
                               //     .formkey.currentState!
-                              //     .validate();
+                              //     .validate();0
                               // if (!isValidate) {
                               //   print('Not Valid Form');
                               // } else {
                               //  Get.toNamed(Routes.resetPassPage);
                               // }
                               //
-                               Get.offNamed(Routes.dashBoardPage);
+                               Get.offNamed(Routes.myTrialTwoPage);
                             },
                             isEnabled: true,
                             padding: const EdgeInsets.all(30),

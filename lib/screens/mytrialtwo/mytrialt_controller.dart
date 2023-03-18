@@ -4,5 +4,5 @@ import '../mytrialone/mytrial_controller.dart';
 
 
 class MyTwoController extends GetxController {
-  final MyOneController ccontroller = Get.find<MyOneController>();
+  // final MyListController controllerr = Get.find();
 }

@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:lakeshore/screens/my_leaves/myleaves_view.dart';
 
 
 class LeaveRequest {
-    // final int? id;
+  // final int? id;
   final String leaveType;
   final String startDate;
   final String endDate;
@@ -64,6 +65,26 @@ class LeaveRequestController extends GetxController {
         status: status
     ));
   }
+/**/
+  // late final GetStorage storage;
+  // final RxList lrequestt = RxList([]);
+  //
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   storage = GetStorage();
+  //   List<dynamic>? storedList = storage.read<List<dynamic>>('myList');
+  //   if (storedList != null) {
+  //     lrequestt.addAll(storedList.map((item) => LeaveRequest.fromJson(item)));
+  //   }
+  // }
+  //
+  // void addToList(LeaveRequest item) {
+  //   lrequestt.add(item);
+  //   storage.write('myList', lrequestt.toList());
+  // }
+
+  /**/
 
   List<LeaveRequest> getLeaves() {
     return lrequest.toList();
@@ -106,8 +127,8 @@ class LeaveRequestController extends GetxController {
     lrequest.value = newContainers;
   }
   /////////////////////////////////
- // int id = 1;
- // final resnCtrl = TextEditingController();
+  // int id = 1;
+  // final resnCtrl = TextEditingController();
 
   RxString dropdownText = 'Leave Type '.obs as RxString;
   List<String> df = [
@@ -134,7 +155,7 @@ class LeaveRequestController extends GetxController {
 
   var statuss = 'pending'.obs;
 
-
+  RxBool pending = true.obs;
   // RxString statuss = 'Pending'.obs as RxString;
 
   void updateStatus(String newStatus) {

@@ -1,67 +1,81 @@
-import 'dart:ffi';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '../mytrialtwo/mytrialt_view.dart';
 
-class Person {
-  String name;
-  String address;
-  String drop;
-  String toggles;
+class ListItem {
+  final String newItem;
+  final String newItemMsg;
+  final String newItemAdrs;
 
-  Person({required this.name, required this.address, required this.drop, required this.toggles});
+  ListItem({
+    required this.newItem,
+    required this.newItemMsg,
+    required this.newItemAdrs,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'newItem': newItem,
+      'newItemMsg': newItemMsg,
+      'newItemAdrs': newItemAdrs,
+    };
+  }
+
+  factory ListItem.fromJson(Map<String, dynamic> json) {
+    return ListItem(
+      newItem: json['newItem'],
+      newItemMsg: json['newItemMsg'],
+      newItemAdrs: json['newItemAdrs'],
+    );
+  }
 }
 
 class MyOneController extends GetxController {
+  final MyListController controllerr = Get.find();
 
-  List<Person> persons = <Person>[].obs;
+  final TextEditingController textEditingController =
+  TextEditingController();
+  final TextEditingController msgEditingController = TextEditingController();
+  final TextEditingController adrsEditingController =
+  TextEditingController();
 
-  void addPerson(String name, String address, String drop, String toggles) {
-    persons.add(Person(name: name, address: address, drop: drop, toggles: toggles));
+  void addToList() {
+    String newItem = textEditingController.text;
+    String newItemMsg = msgEditingController.text;
+    String newItemAdrs = adrsEditingController.text;
+    if (newItem.isNotEmpty) {
+      controllerr.addToList(ListItem(
+        newItem: newItem,
+        newItemMsg: newItemMsg,
+        newItemAdrs: newItemAdrs,
+      ));
+      Get.back();
+    }
+  }
+}
+
+class MyListController extends GetxController {
+  late final GetStorage storage;
+  final RxList<ListItem> myList = RxList<ListItem>([]);
+
+  @override
+  void onInit() {
+    super.onInit();
+    storage = GetStorage();
+    List<dynamic>? storedList = storage.read<List<dynamic>>('myList');
+    if (storedList != null) {
+      myList.addAll(storedList.map((item) => ListItem.fromJson(item)));
+    }
   }
 
-  List<Person> getPersons() {
-    return persons.toList();
+  void addToList(ListItem item) {
+    myList.add(item);
+    storage.write('myList', myList.toList());
   }
 
-  final nameController = TextEditingController();
-  final addressController = TextEditingController();
-  final departmentController = TextEditingController();
-  final toggleButtonController = TextEditingController();
-
-  void submit() {
-    final name = nameController.text;
-    final address = addressController.text;
-    final drop = selectedDepartment.value;
-    final toggles = toggleButtonController.text;
-
-    addPerson(name, address, drop, toggles);
-
-    nameController.clear();
-    addressController.clear();
-    selectedDepartment.value = departmentt.first;
-    toggleButtonController.clear();
-
-    Get.to(MyTrialTwo());
-  }
-
-  List<String> departmentt = ["Department Headd","Department1", "Department2", "Department3"].obs;
-
-  RxString selectedDepartment = "Department Headd".obs as RxString;
-
-  void onDepartmentChange(String? value) {
-    selectedDepartment.value = value!;
-  }
-  List<String> items = ['Full Day', 'Half Day'].obs;
-  RxInt selectedIndex =  0.obs as RxInt;
-  RxString Selected=''.obs;
-  //
-  // void selectIndex(int index) {
-  //   selectedIndex.value = index;
-  // }
-  // var selectedIndex = 0.obs;
-
-  void selectIndex(int index) {
-    selectedIndex.value = index!;
+  void removeFromList(int index) {
+    myList.removeAt(index);
+    storage.write('myList', myList.toList());
   }
 }

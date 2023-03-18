@@ -118,22 +118,22 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                       children: [
                         Obx(
                               () =>
-                                  // dropDownBox(
-                                  //   controller: controller.departmentController,
-                                  //   ListValue: controller.selectedDepartment.value,
-                                  //   ListItem: controller.departmentt
-                                  //       .map<DropdownMenuItem<String>>(
-                                  //           (String value) {
-                                  //         return DropdownMenuItem<String>(
-                                  //           value: value,
-                                  //           child: Text(value, style: TextStyle(fontWeight: FontWeight.normal),),
-                                  //         );
-                                  //       }).toList(),
-                                  //   FunctioOnchanged: controller.onDepartmentChange,
-                                  // ),
-                                  dropDownBox(
-                                controller: controller.ltypeController,
-                                  FunctioOnchanged: (String? value) {
+                          // dropDownBox(
+                          //   controller: controller.departmentController,
+                          //   ListValue: controller.selectedDepartment.value,
+                          //   ListItem: controller.departmentt
+                          //       .map<DropdownMenuItem<String>>(
+                          //           (String value) {
+                          //         return DropdownMenuItem<String>(
+                          //           value: value,
+                          //           child: Text(value, style: TextStyle(fontWeight: FontWeight.normal),),
+                          //         );
+                          //       }).toList(),
+                          //   FunctioOnchanged: controller.onDepartmentChange,
+                          // ),
+                          dropDownBox(
+                              controller: controller.ltypeController,
+                              FunctioOnchanged: (String? value) {
                                 // This is called when the user selects an item.
                                 controller.dropdownText.value = value!;
                               },
@@ -298,7 +298,7 @@ class LeaveRequestView extends GetView<LeaveRequestController> {
                         text: 'Submit Request',
                         buttonPress: () {
                           controller.submit();
-                          },
+                        },
                         isEnabled: true,
                         padding: const EdgeInsets.only(bottom: 5),
                         height: Get.height * 0.07,

@@ -244,7 +244,7 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                   // if(ccontroller.statuss == ccontroller.pending)true?
                                   RequestContainer(
                                       width: Get.width * 0.9,
-                                      height: Get.height * 0.23,
+                                   //   height: Get.height * 0.23,
                                       child: Padding(
                                           padding: const EdgeInsets.only(
                                               left: 20, right: 20),
@@ -371,7 +371,7 @@ class MyLeavesdView extends GetView<MyLeavesController> {
                                                       .spaceBetween,
                                                   children: [
                                                     Container(
-                                                      height: Get.height * 0.07,
+                                                     // height: Get.height * 0.07,
                                                       width: Get.width * 0.5,
                                                       child: Padding(
                                                         padding: const EdgeInsets
