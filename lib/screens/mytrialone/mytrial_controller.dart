@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../mytrialtwo/mytrialt_view.dart';
+import '../mytrialtwo/mytrialt_view.dart';
+import '../mytrialtwo/mytrialt_view.dart';
 
 class ListItem {
   final String newItem;
@@ -34,13 +36,14 @@ class ListItem {
 class MyOneController extends GetxController {
   final MyListController controllerr = Get.find();
 
+
   final TextEditingController textEditingController =
   TextEditingController();
   final TextEditingController msgEditingController = TextEditingController();
   final TextEditingController adrsEditingController =
   TextEditingController();
 
-  void addToList() {
+  void addToListt() {
     String newItem = textEditingController.text;
     String newItemMsg = msgEditingController.text;
     String newItemAdrs = adrsEditingController.text;

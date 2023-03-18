@@ -5,10 +5,10 @@ import '../../utils/my_utils.dart';
 import '../mytrialone/mytrial_controller.dart';
 import 'mytrialt_controller.dart';
 
-class MyTwoController extends GetxController {}
+//class MyTwoController extends GetxController {}
 
 class MyTrialTwo extends GetView<MyListController> {
-  final MyOneController controllerr = Get.put(MyOneController());
+  final MyOneController cconttroller = Get.put(MyOneController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class MyTrialTwo extends GetView<MyListController> {
           backgroundColor: Colors.red,
           body: Obx(
                   () => ListView.builder(
-                itemCount: Get.find<MyListController>().myList.length,
+                itemCount:controller.myList.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -37,15 +37,15 @@ class MyTrialTwo extends GetView<MyListController> {
                           Text("My Designs"),
                           Column(
                             children: [
-                              Text(controllerr.controllerr.myList[index].newItem),
-                              Text(controllerr.controllerr.myList[index].newItemMsg),
-                              Text(controllerr.controllerr.myList[index].newItemAdrs),
+                              Text(controller.myList[index].newItem),
+                              Text(controller.myList[index].newItemMsg),
+                              Text(controller.myList[index].newItemAdrs),
                             ],
                           ),
                           IconButton(
                             icon: Icon(Icons.delete),
                             onPressed: () {
-                              controllerr.controllerr.removeFromList(index);
+                              controller.removeFromList(index);
                             },
                           ),
                         ],

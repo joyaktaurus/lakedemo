@@ -9,8 +9,8 @@ import 'mytrial_controller.dart';
 class MyOneBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<MyOneController>(
-          () => MyOneController(),
+    Get.lazyPut<MyListController>(
+          () => MyListController(),
     );
   }
 }
