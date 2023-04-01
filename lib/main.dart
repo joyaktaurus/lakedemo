@@ -14,11 +14,9 @@ void main() async {
       .then((_)
   {
   });
- await GetStorage.init();
-
-  runApp(
+// GetStorage.init();
+ runApp(
     GetMaterialApp(
-
       debugShowCheckedModeBanner: false,
       title: App.appTitle,
       theme: ThemeData(

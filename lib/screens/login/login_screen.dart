@@ -107,7 +107,7 @@ class LoginView extends GetView<LoginController> {
                                    controller.isChecked = !controller.isChecked;
                                 },
                                 ),
-                            Text("Remember me"),
+                            Text("Remember me",  style: TextStyle(color: Colors.blue, fontSize: 12),),
                           ],
                         ),
                         GestureDetector(
@@ -116,7 +116,7 @@ class LoginView extends GetView<LoginController> {
                           },
                           child: Text(
                             "Forgot Password",
-                            style: TextStyle(color: Colors.blue, fontSize: 14),
+                            style: TextStyle(color: Colors.blue, fontSize: 12),
                           ),
                         )
                       ],
@@ -140,7 +140,7 @@ class LoginView extends GetView<LoginController> {
                               //  Get.toNamed(Routes.resetPassPage);
                               // }
                               //
-                               Get.offNamed(Routes.myTrialOnePage);
+                               Get.offNamed(Routes.myTrialTwoPage);
                             },
                             isEnabled: true,
                             padding: const EdgeInsets.all(30),
