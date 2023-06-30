@@ -1,7 +1,9 @@
 abstract class ApiPaths {
-  static const baseUrl = 'https://webappguru.in/api/app/';
+  static const baseUrl =
+      'https://dev.workhorse.cloud/workhorse/api/'; //'http://54.166.108.170:4000/workhorse/api/';
   static const imagePath = 'static/files/';
-  static const login = 'login?/';
+  static const upload = 'upload/';
+  static const login = 'token/';
   static const twoFactorAuthSendOTP = 'two_factor/otp/send/';
   static const twoFactorAuthVerifyOTP = 'two_factor/otp/verify/';
   static const userPrivileges = 'user_privileges/';

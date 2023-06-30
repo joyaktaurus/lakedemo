@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-
 import '../app.dart';
 import '../models/api_msg.dart';
 import '../models/api_resp.dart';
@@ -9,13 +8,13 @@ import '../utils/err_m.dart';
 import '../utils/mydio.dart';
 
 abstract class LoginServices {
-  static Future<ApiResp> fetchUser(String userId, String pswd) async {
+  static Future<ApiResp> fetchUser(String username, String password) async {
     dynamic resp;
     await errMAsync(
           () async {
         resp = await MyDio().customPost(
           ApiPaths.login,
-          data: {'email': userId, 'password': pswd},
+          data: {'username': username, 'password': password},
         );
       },
       title: 'Login Failed',

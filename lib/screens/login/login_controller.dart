@@ -48,9 +48,9 @@ class LoginController extends GetxController {
     isLoggingProgress.value = true;
     final String username = userCtrl.text;
     final String pswd = pswdCtrl.text;
-    // Future.delayed(Duration.zero, ()async {
-    //   checkIflogged();
-    // });
+    Future.delayed(Duration.zero, ()async {
+      //checkIflogged();
+    });
 
     if (!username.isValidEmail()) {
       userCtrlfocusNode.requestFocus();
@@ -83,7 +83,7 @@ class LoginController extends GetxController {
 
       App.user = user;
       if (user.emailVerified == true) {
-        Get.offAllNamed(Routes.dashBoardPage);
+        Get.offAllNamed(Routes.myLeavesPage);
       } else {
         showMsg("Email not verified", "Failed");
       }

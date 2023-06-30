@@ -14,12 +14,12 @@ abstract class ImageUploadServices {
       XFile file, BuildContext buildContext) async {
     dynamic resp;
     await errMAsync(() async {
-      resp = await MyDio().customMultipart(
-        ApiPaths.uploadimage,
-        file: file,
-        buildContext: buildContext,
-
-      );
+      // resp = await MyDio().customMultipart(
+      //   ApiPaths.uploadimage,
+      //   file: file,
+      //   buildContext: buildContext,
+      //
+      // );
     }, title: 'Failed', dialogDismiss: true);
     // ignore: prefer_interpolation_to_compose_strings
     log('LL' + resp.toString());

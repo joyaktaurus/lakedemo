@@ -41,43 +41,6 @@ class MyTrialOne extends GetView<MyListController> {
                 border: OutlineInputBorder(),
               ),
             ),
-            // TextField(
-            //   controller: controllerr.sdateEditingController, // new field
-            //   onTap: () async {
-            //     final DateTime? picked = await showDatePicker(
-            //       context: context,
-            //       initialDate: DateTime.now(),
-            //       firstDate: DateTime(1900),
-            //       lastDate: DateTime(2100),
-            //     );
-            //     if (picked != null) {
-            //       controollerr.sdateEditingController.text = picked.toString();
-            //     }
-            //   },
-            //   decoration: InputDecoration(hintText: 'Enter date'), // new field
-            // ),
-            // RequestContainer(
-            //   controller: controollerr.sdateEditingController,
-            //   width: Get.width * 0.4,
-            //   height: Get.height * 0.07,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       IconButton(
-            //           onPressed: () {
-            //             controollerr.choosestartDate();
-            //           },
-            //           icon: Icon(Icons.calendar_month,
-            //               color: Colors.blue)),
-            //        Text(
-            //           controollerr.selectedDate.value
-            //               .toString(),
-            //           style: TextStyle(fontSize: 16),
-            //         ),
-            //
-            //     ],
-            //   ),
-            // ),
             TextButton(
               child: Text('CANCEL'),
               onPressed: () {
